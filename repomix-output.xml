@@ -1,0 +1,4176 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitignore
+app/globals.css
+app/layout.tsx
+app/level/[id]/page.tsx
+app/page.tsx
+components.json
+components/AssessmentEngine.tsx
+components/CourseCard.tsx
+components/DeckCarousel.tsx
+components/FirstEncountersLevel.tsx
+components/LevelComponent.tsx
+components/QuizLevel.tsx
+components/RoleplayLevel.tsx
+components/ui/badge.tsx
+components/ui/button.tsx
+components/ui/card.tsx
+components/ui/progress.tsx
+eslint.config.mjs
+lib/utils.ts
+next.config.ts
+package.json
+postcss.config.mjs
+public/file.svg
+public/globe.svg
+public/next.svg
+public/vercel.svg
+public/window.svg
+README.md
+tsconfig.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitignore">
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+</file>
+
+<file path="app/globals.css">
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color tokens to match jungle-themed gamified design for Gen Z */
+  --background: #ffffff;
+  --foreground: #374151;
+  --card: #f0fdf4;
+  --card-foreground: #1f2937;
+  --popover: #ffffff;
+  --popover-foreground: #374151;
+  --primary: #15803d;
+  --primary-foreground: #ffffff;
+  --secondary: #84cc16;
+  --secondary-foreground: #1f2937;
+  --muted: #f0fdf4;
+  --muted-foreground: #4b5563;
+  --accent: #6366f1;
+  --accent-foreground: #ffffff;
+  --destructive: #f87171;
+  --destructive-foreground: #ffffff;
+  --border: #d1d5db;
+  --input: #f8fafc;
+  --ring: #84cc16;
+  --chart-1: #6366f1;
+  --chart-2: #fbbf24;
+  --chart-3: #f472b6;
+  --chart-4: #6ee7b7;
+  --chart-5: #60a5fa;
+  --radius: 0.5rem;
+  --sidebar: #f0fdf4;
+  --sidebar-foreground: #374151;
+  --sidebar-primary: #15803d;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #84cc16;
+  --sidebar-accent-foreground: #1f2937;
+  --sidebar-border: #d1d5db;
+  --sidebar-ring: #84cc16;
+}
+
+.dark {
+  /* Updated dark mode colors to maintain jungle theme with better contrast */
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
+  --popover: #1e293b;
+  --popover-foreground: #f1f5f9;
+  --primary: #22c55e;
+  --primary-foreground: #0f172a;
+  --secondary: #84cc16;
+  --secondary-foreground: #0f172a;
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+  --accent: #6366f1;
+  --accent-foreground: #f1f5f9;
+  --destructive: #f87171;
+  --destructive-foreground: #f1f5f9;
+  --border: #334155;
+  --input: #334155;
+  --ring: #84cc16;
+  --chart-1: #6366f1;
+  --chart-2: #fbbf24;
+  --chart-3: #f472b6;
+  --chart-4: #6ee7b7;
+  --chart-5: #60a5fa;
+  --sidebar: #1e293b;
+  --sidebar-foreground: #f1f5f9;
+  --sidebar-primary: #22c55e;
+  --sidebar-primary-foreground: #0f172a;
+  --sidebar-accent: #84cc16;
+  --sidebar-accent-foreground: #0f172a;
+  --sidebar-border: #334155;
+  --sidebar-ring: #84cc16;
+}
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Added custom animations for gamification elements */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(132, 204, 22, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(132, 204, 22, 0.8);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+</file>
+
+<file path="app/layout.tsx">
+import type React from "react"
+import type { Metadata } from "next"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
+import { Analytics } from "@vercel/analytics/next"
+import { Suspense } from "react"
+import "./globals.css"
+
+export const metadata: Metadata = {
+  title: "Nu9ve Academy - Habilidades Blandas Gamificadas",
+  description: "Aprende habilidades blandas de forma divertida con capibaras",
+  generator: "v0.app",
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="es">
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
+        <Suspense fallback={null}>{children}</Suspense>
+        <Analytics />
+      </body>
+    </html>
+  )
+}
+</file>
+
+<file path="app/level/[id]/page.tsx">
+"use client"
+import { useRouter } from "next/navigation"
+import RoleplayLevel from "@/components/RoleplayLevel"
+import QuizLevel from "@/components/QuizLevel"
+
+interface LevelPageProps {
+  params: {
+    id: string
+  }
+}
+
+export default function LevelPage({ params }: LevelPageProps) {
+  const router = useRouter()
+  const levelId = Number.parseInt(params.id)
+
+  // Determinar el tipo de nivel basado en el ID
+  const getLevelType = (id: number) => {
+    if (id === 1) return "roleplay"
+    if (id === 2) return "quiz"
+    if (id === 3) return "video"
+    if (id === 4) return "story"
+    if (id === 5) return "interactive"
+    return "roleplay"
+  }
+
+  const levelType = getLevelType(levelId)
+
+  const handleComplete = (score: number, badges: string[]) => {
+    // Aquí guardarías el progreso en localStorage o base de datos
+    console.log(`Level ${levelId} completed with score: ${score}, badges: ${badges}`)
+    router.push("/")
+  }
+
+  const handleExit = () => {
+    router.push("/")
+  }
+
+  if (levelType === "roleplay") {
+    return <RoleplayLevel levelId={levelId} onComplete={handleComplete} onExit={handleExit} />
+  }
+
+  if (levelType === "quiz") {
+    return <QuizLevel levelId={levelId} onComplete={handleComplete} onExit={handleExit} />
+  }
+
+  // Placeholder para otros tipos de niveles
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 p-4 flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-2xl font-bold mb-4">Nivel {levelId}</h1>
+        <p className="text-muted-foreground mb-4">Tipo: {levelType}</p>
+        <p className="text-sm text-muted-foreground">Este tipo de nivel estará disponible pronto</p>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="app/page.tsx">
+"use client"
+
+import { useState, useEffect } from "react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import {
+  Trophy,
+  Heart,
+  Award,
+  Coins,
+  Gem,
+  ShoppingBag,
+  Map,
+  User,
+  Play,
+  Lock,
+  CheckCircle,
+  Sparkles,
+  Volume2,
+  Eye,
+  MessageCircle,
+  Users,
+  Presentation,
+  LogIn,
+  UserPlus,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react"
+
+interface UserData {
+  level: number
+  xp: number
+  coins: number
+  gems: number
+  lives: number
+  maxLives: number
+  lastDailyChest: string | null
+  completedLevels: number[]
+  badges: string[]
+  currentPet: string
+  unlockedPets: string[]
+}
+
+interface Course {
+  id: string
+  title: string
+  description: string
+  icon: string
+  color: string
+  totalLevels: number
+  unlockedLevels: number
+  completedLevels: number
+}
+
+interface Level {
+  id: number
+  title: string
+  type: "roleplay" | "quiz" | "story" | "video" | "interactive"
+  duration: number
+  xpReward: number
+  coinReward: number
+  isCompleted: boolean
+  isUnlocked: boolean
+}
+
+const initialUserData: UserData = {
+  level: 1,
+  xp: 0,
+  coins: 100,
+  gems: 5,
+  lives: 5,
+  maxLives: 5,
+  lastDailyChest: null,
+  completedLevels: [],
+  badges: [],
+  currentPet: "baby-capybara",
+  unlockedPets: ["baby-capybara"],
+}
+
+const courses: Course[] = [
+  {
+    id: "communication-v1",
+    title: "Comunicación Efectiva",
+    description: "Domina el arte de comunicarte con confianza y empatía",
+    icon: "💬",
+    color: "from-amber-400 to-orange-500",
+    totalLevels: 12,
+    unlockedLevels: 3,
+    completedLevels: 0,
+  },
+  {
+    id: "communication-v2",
+    title: "Comunicación Efectiva v2",
+    description: "Versión avanzada con nuevos escenarios y desafíos",
+    icon: "🗣️",
+    color: "from-orange-500 to-red-500",
+    totalLevels: 12,
+    unlockedLevels: 1,
+    completedLevels: 0,
+  },
+  {
+    id: "communication-v3",
+    title: "Comunicación Efectiva v3",
+    description: "Edición especial con casos de estudio empresariales",
+    icon: "📢",
+    color: "from-yellow-400 to-amber-500",
+    totalLevels: 12,
+    unlockedLevels: 1,
+    completedLevels: 0,
+  },
+  {
+    id: "communication-v4",
+    title: "Comunicación v4",
+    description: "Técnicas avanzadas de persuasión y liderazgo",
+    icon: "🎯",
+    color: "from-amber-500 to-yellow-600",
+    totalLevels: 12,
+    unlockedLevels: 1,
+    completedLevels: 0,
+  },
+  {
+    id: "communication-premium",
+    title: "Comunicación Premium",
+    description: "Masterclass exclusiva con casos reales de éxito",
+    icon: "👑",
+    color: "from-yellow-600 to-orange-700",
+    totalLevels: 12,
+    unlockedLevels: 1,
+    completedLevels: 0,
+  },
+]
+
+const communicationLevels: Level[] = [
+  {
+    id: 1,
+    title: "Primeros Encuentros",
+    type: "roleplay",
+    duration: 8,
+    xpReward: 50,
+    coinReward: 20,
+    isCompleted: false,
+    isUnlocked: true,
+  },
+  {
+    id: 2,
+    title: "Escucha Activa",
+    type: "interactive",
+    duration: 6,
+    xpReward: 40,
+    coinReward: 15,
+    isCompleted: false,
+    isUnlocked: true,
+  },
+  {
+    id: 3,
+    title: "Lenguaje Corporal",
+    type: "video",
+    duration: 10,
+    xpReward: 60,
+    coinReward: 25,
+    isCompleted: false,
+    isUnlocked: true,
+  },
+  {
+    id: 4,
+    title: "Manejo de Conflictos",
+    type: "story",
+    duration: 12,
+    xpReward: 80,
+    coinReward: 30,
+    isCompleted: false,
+    isUnlocked: false,
+  },
+  {
+    id: 5,
+    title: "Presentaciones Efectivas",
+    type: "quiz",
+    duration: 15,
+    xpReward: 100,
+    coinReward: 40,
+    isCompleted: false,
+    isUnlocked: false,
+  },
+]
+
+const pets = [
+  { id: "baby-capybara", name: "Capi Bebé", icon: "🐹", price: 0, unlocked: true },
+  { id: "adult-capybara", name: "Capi Adulto", icon: "🦫", price: 200, unlocked: false },
+  { id: "golden-capybara", name: "Capi Dorado", icon: "✨🦫", price: 1000, unlocked: false },
+  { id: "ninja-capybara", name: "Capi Ninja", icon: "🥷🦫", price: 1500, unlocked: false },
+]
+
+const petData = {
+  "baby-capybara": { name: "Capi Bebé", icon: "🐹" },
+  "adult-capybara": { name: "Capi Adulto", icon: "🦫" },
+  "golden-capybara": { name: "Capi Dorado", icon: "✨🦫" },
+  "ninja-capybara": { name: "Capi Ninja", icon: "🥷🦫" },
+}
+
+function LevelComponent({
+  levelId,
+  onComplete,
+  onBack,
+  userData,
+  onLoseLife,
+}: {
+  levelId: number
+  onComplete: (xp: number, coins: number) => void
+  onBack: () => void
+  userData: UserData
+  onLoseLife: () => void
+}) {
+  const [currentStep, setCurrentStep] = useState(0)
+  const [score, setScore] = useState(0)
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [showFeedback, setShowFeedback] = useState(false)
+  const [wrongAnswers, setWrongAnswers] = useState<number[]>([]) // Track wrong answers to retry
+  const [hintUsed, setHintUsed] = useState(false) // Track if hint was used
+  const [isCorrect, setIsCorrect] = useState(false) // Track if answer was correct for feedback color
+
+  // Level content data with complete content from the attachment
+  const levelData = {
+    1: {
+      title: "Primeros Encuentros",
+      type: "roleplay",
+      duration: 8,
+      xpReward: 50,
+      coinReward: 20,
+      background: "jungle-campfire-night-scene-animated.png",
+      story:
+        "Llegas a un campamento de capibaras exploradoras en medio de la selva. Es tu primer día y necesitas presentarte al grupo. Tu objetivo es causar una buena primera impresión.",
+      hint: "Recuerda: una sonrisa genuina y mostrar interés por los demás son claves universales para conectar.",
+      steps: [
+        {
+          situation: "¿Cómo saludarás a una capibara desconocida que se acerca a ti?",
+          options: [
+            { text: "Con una sonrisa cálida y contacto visual directo", correct: true, points: 20 },
+            { text: "Con un saludo rápido sin mirar mucho", correct: false, points: 0 },
+            { text: "Esperando a que ella hable primero", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Excelente! El contacto visual y la sonrisa genuina transmiten confianza y apertura.",
+            incorrect:
+              "Una sonrisa cálida y contacto visual directo son fundamentales para una buena primera impresión.",
+          },
+        },
+        {
+          situation: "Durante la conversación, ¿mantienes contacto visual?",
+          options: [
+            { text: "Sí, de manera natural y respetuosa", correct: true, points: 20 },
+            { text: "No, me da pena mirar a los ojos", correct: false, points: 0 },
+            { text: "Solo cuando hablo yo", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "Perfecto. El contacto visual muestra interés genuino y construye confianza.",
+            incorrect: "El contacto visual natural (no fijo) demuestra respeto e interés por la otra persona.",
+          },
+        },
+        {
+          situation: "El interlocutor responde de manera tímida. ¿Qué haces?",
+          options: [
+            { text: "Le doy espacio y hablo más suave", correct: true, points: 20 },
+            { text: "Trato de animarlo hablando más fuerte", correct: false, points: 0 },
+            { text: "Cambio de tema inmediatamente", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Muy bien! Adaptar tu energía a la del otro muestra inteligencia emocional.",
+            incorrect: "Cuando alguien es tímido, es mejor bajar la intensidad y darle espacio para abrirse.",
+          },
+        },
+        {
+          situation: "Una capibara te ofrece la mano para saludar. ¿Qué tipo de apretón usas?",
+          options: [
+            { text: "Firme pero no excesivo, con contacto visual", correct: true, points: 20 },
+            { text: "Muy suave, casi sin fuerza", correct: false, points: 0 },
+            { text: "Muy fuerte para mostrar seguridad", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "Excelente. Un apretón firme pero respetuoso transmite confianza sin intimidar.",
+            incorrect: "Un apretón de manos debe ser firme pero no excesivo, acompañado de contacto visual.",
+          },
+        },
+        {
+          situation: "Te presentan al grupo. ¿Cómo te presentas?",
+          options: [
+            { text: "Digo mi nombre y algo que me gusta hacer", correct: true, points: 20 },
+            { text: "Solo digo mi nombre", correct: false, points: 5 },
+            { text: "Hago una broma para romper el hielo", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Perfecto! Compartir un interés personal ayuda a otros a conectar contigo.",
+            incorrect: "Agregar algo personal (un interés o pasión) ayuda a crear conexiones más profundas.",
+          },
+        },
+      ],
+    },
+    2: {
+      title: "Escucha Activa",
+      type: "interactive",
+      duration: 6,
+      xpReward: 40,
+      coinReward: 15,
+      background: "dense-jungle-sounds.png",
+      story:
+        "En el corazón de la selva, dos capibaras están compartiendo sus experiencias. Tu misión es desarrollar tu habilidad de escucha activa prestando atención a cada detalle.",
+      hint: "La escucha activa no es solo oír palabras, es entender emociones y necesidades detrás del mensaje.",
+      steps: [
+        {
+          situation: "Una capibara habla de su día difícil. ¿Qué técnica usarías para demostrar que escuchas?",
+          options: [
+            { text: "Repetir palabras clave y asentir", correct: true, points: 20 },
+            { text: "Interrumpir para dar consejos", correct: false, points: 0 },
+            { text: "Cambiar el tema a algo positivo", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Excelente! Parafrasear y usar lenguaje corporal muestra que realmente escuchas.",
+            incorrect: "Escuchar activamente significa reflejar lo que oyes sin interrumpir o juzgar.",
+          },
+        },
+        {
+          situation: "Escuchas a una capibara contar una historia emotiva. ¿Qué frase muestra mejor escucha?",
+          options: [
+            { text: "'Entiendo cómo te sientes'", correct: true, points: 20 },
+            { text: "'Lo mismo me pasó a mí'", correct: false, points: 0 },
+            { text: "'No te preocupes, no es tan grave'", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "Perfecto. Validar las emociones del otro es clave en la escucha activa.",
+            incorrect: "Evita minimizar o hacer sobre ti. Enfócate en validar sus sentimientos.",
+          },
+        },
+        {
+          situation: "Una capibara te cuenta 3 cosas importantes. ¿En qué orden de importancia las escuchaste?",
+          options: [
+            { text: "Su preocupación por la familia, el trabajo, el clima", correct: true, points: 20 },
+            { text: "El clima, el trabajo, la familia", correct: false, points: 0 },
+            { text: "El trabajo, el clima, la familia", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Muy bien! Identificaste correctamente que la familia era su mayor preocupación.",
+            incorrect: "Escuchar activamente incluye identificar qué es más importante para la otra persona.",
+          },
+        },
+        {
+          situation: "El interlocutor baja la voz mientras habla. ¿Qué haces?",
+          options: [
+            { text: "Me acerco ligeramente y mantengo atención", correct: true, points: 20 },
+            { text: "Ignoro el cambio de volumen", correct: false, points: 0 },
+            { text: "Le pido que hable más fuerte", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "Excelente. Adaptarte físicamente muestra respeto e interés genuino.",
+            incorrect: "Cuando alguien baja la voz, suele ser porque el tema es importante o personal.",
+          },
+        },
+        {
+          situation: "Una capibara te cuenta un problema personal. ¿Cuál es la mejor respuesta?",
+          options: [
+            { text: "'Debe ser difícil para ti. ¿Cómo te sientes?'", correct: true, points: 20 },
+            { text: "'Deberías hacer esto...'", correct: false, points: 0 },
+            { text: "'Al menos no es tan malo como...'", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Perfecto! Validar emociones y hacer preguntas abiertas profundiza la conexión.",
+            incorrect: "Evita dar consejos inmediatos o comparar. Primero valida sus emociones.",
+          },
+        },
+      ],
+    },
+    3: {
+      title: "Lenguaje Corporal",
+      type: "video",
+      duration: 10,
+      xpReward: 60,
+      coinReward: 25,
+      background: "natural-landscape-body-language.png",
+      story:
+        "En un claro del bosque, observas diferentes capibaras interactuando. Tu misión es interpretar y usar el lenguaje corporal efectivamente.",
+      hint: "El cuerpo comunica más que las palabras. Observa posturas, gestos y expresiones para entender el mensaje completo.",
+      steps: [
+        {
+          situation: "Observas una capibara con brazos cruzados durante una conversación. ¿Qué comunica?",
+          options: [
+            { text: "Posible resistencia o incomodidad", correct: true, points: 20 },
+            { text: "Está relajada y cómoda", correct: false, points: 0 },
+            { text: "Tiene frío solamente", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Correcto! Los brazos cruzados suelen indicar una barrera emocional o física.",
+            incorrect: "Los brazos cruzados generalmente indican resistencia, defensa o incomodidad.",
+          },
+        },
+        {
+          situation: "Ves una sonrisa natural vs una forzada. ¿Cómo las diferencias?",
+          options: [
+            { text: "La natural involucra los ojos, la forzada solo la boca", correct: true, points: 20 },
+            { text: "La natural es más grande", correct: false, points: 0 },
+            { text: "No hay diferencia real", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Excelente! Una sonrisa genuina activa los músculos alrededor de los ojos.",
+            incorrect: "Las sonrisas genuinas involucran toda la cara, especialmente los ojos (sonrisa Duchenne).",
+          },
+        },
+        {
+          situation: "¿Qué postura corporal muestra más seguridad y apertura?",
+          options: [
+            { text: "Espalda recta, hombros relajados, brazos abiertos", correct: true, points: 20 },
+            { text: "Encorvado con manos en los bolsillos", correct: false, points: 0 },
+            { text: "Rígido con brazos a los lados", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Perfecto! Esta postura transmite confianza sin intimidar.",
+            incorrect: "Una postura abierta y relajada transmite confianza y accesibilidad.",
+          },
+        },
+        {
+          situation: "Durante una presentación, ¿qué hacer con las manos?",
+          options: [
+            { text: "Usarlas para acompañar y enfatizar el mensaje", correct: true, points: 20 },
+            { text: "Mantenerlas ocultas o quietas", correct: false, points: 0 },
+            { text: "Cruzarlas para verse profesional", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Muy bien! Los gestos naturales con las manos refuerzan tu mensaje.",
+            incorrect: "Las manos son herramientas poderosas para comunicar. Úsalas de manera natural.",
+          },
+        },
+        {
+          situation: "¿Cuántos segundos es ideal mantener contacto visual en una conversación?",
+          options: [
+            { text: "3-5 segundos, luego desviar naturalmente", correct: true, points: 20 },
+            { text: "Todo el tiempo sin parar", correct: false, points: 0 },
+            { text: "Solo cuando hablas tú", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Correcto! El contacto visual natural evita intimidar pero mantiene conexión.",
+            incorrect: "El contacto visual debe ser natural: 3-5 segundos, luego desviar brevemente.",
+          },
+        },
+      ],
+    },
+    4: {
+      title: "Manejo de Conflictos",
+      type: "story",
+      duration: 12,
+      xpReward: 80,
+      coinReward: 30,
+      background: "conflict-resolution-scene.png",
+      story:
+        "Dos capibaras están en desacuerdo sobre qué ruta tomar para llegar al río. La tensión está aumentando y necesitas mediar para resolver el conflicto.",
+      hint: "En conflictos, busca primero entender antes de ser entendido. La empatía desarma la tensión.",
+      steps: [
+        {
+          situation: "Dos capibaras discuten por un recurso limitado. ¿Qué haces primero?",
+          options: [
+            { text: "Escucho a ambas partes por separado", correct: true, points: 20 },
+            { text: "Tomo una decisión rápida", correct: false, points: 0 },
+            { text: "Les digo que se calmen", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Excelente! Entender todas las perspectivas es el primer paso para resolver conflictos.",
+            incorrect: "Antes de resolver, necesitas entender completamente el problema desde todas las perspectivas.",
+          },
+        },
+        {
+          situation: "Una parte está muy alterada emocionalmente. ¿Qué tono de voz usarías?",
+          options: [
+            { text: "Calmado y pausado, más bajo que el suyo", correct: true, points: 20 },
+            { text: "Firme y autoritario", correct: false, points: 0 },
+            { text: "Al mismo nivel de intensidad", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Perfecto! Un tono calmado ayuda a reducir la tensión emocional.",
+            incorrect: "Bajar el tono y hablar pausadamente ayuda a calmar la situación.",
+          },
+        },
+        {
+          situation: "La tensión sube entre las partes. ¿Qué haces?",
+          options: [
+            { text: "Hago una pausa y respiro profundo", correct: true, points: 20 },
+            { text: "Acelero para resolver rápido", correct: false, points: 0 },
+            { text: "Dejo que se desahoguen", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Muy bien! Las pausas estratégicas permiten que las emociones se calmen.",
+            incorrect: "Cuando la tensión sube, una pausa estratégica puede cambiar toda la dinámica.",
+          },
+        },
+        {
+          situation: "Buscas una solución. ¿En qué te enfocas?",
+          options: [
+            { text: "En puntos en común e intereses compartidos", correct: true, points: 20 },
+            { text: "En quién tiene la razón", correct: false, points: 0 },
+            { text: "En las diferencias para resolverlas", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Excelente! Los puntos en común son la base para construir soluciones.",
+            incorrect: "Enfócate en lo que une, no en lo que divide. Los intereses comunes son clave.",
+          },
+        },
+        {
+          situation: "Una parte no quiere hablar más. ¿Qué haces?",
+          options: [
+            { text: "Respeto su espacio y propongo retomar después", correct: true, points: 20 },
+            { text: "Insisto en que debe participar", correct: false, points: 0 },
+            { text: "Resuelvo sin su opinión", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Perfecto! Respetar los límites mantiene la confianza y abre futuras oportunidades.",
+            incorrect: "Forzar la participación puede empeorar el conflicto. Respeta los límites.",
+          },
+        },
+      ],
+    },
+    5: {
+      title: "Presentaciones Efectivas",
+      type: "quiz",
+      duration: 15,
+      xpReward: 100,
+      coinReward: 40,
+      background: "presentation-stage-natural.png",
+      story:
+        "Es tu turno de presentar un proyecto importante al consejo de capibaras ancianas. Debes demostrar todas tus habilidades de comunicación para ser claro, convincente y memorable.",
+      hint: "Una gran presentación cuenta una historia clara: problema, solución, beneficios. Conecta emocionalmente con tu audiencia.",
+      steps: [
+        {
+          situation: "¿Cuál es la mejor manera de iniciar tu presentación?",
+          options: [
+            { text: "Con una historia breve relacionada al tema", correct: true, points: 20 },
+            { text: "Con estadísticas y datos duros", correct: false, points: 5 },
+            { text: "Disculpándome por posibles errores", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Excelente! Las historias capturan atención y crean conexión emocional inmediata.",
+            incorrect: "Las historias conectan emocionalmente desde el inicio y hacen tu mensaje memorable.",
+          },
+        },
+        {
+          situation: "¿Cuánto tiempo máximo deberías usar para la introducción?",
+          options: [
+            { text: "1-2 minutos máximo", correct: true, points: 20 },
+            { text: "5 minutos para dar contexto completo", correct: false, points: 0 },
+            { text: "30 segundos, directo al grano", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Correcto! Una introducción concisa mantiene la atención y genera expectativa.",
+            incorrect: "La introducción debe ser breve pero suficiente para enganchar y contextualizar.",
+          },
+        },
+        {
+          situation: "Notas que el público se distrae. ¿Qué haces?",
+          options: [
+            { text: "Hago una pregunta directa o cambio el ritmo", correct: true, points: 20 },
+            { text: "Continúo como si nada pasara", correct: false, points: 0 },
+            { text: "Hablo más fuerte para captar atención", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Muy bien! Involucrar activamente al público recupera su atención.",
+            incorrect: "Cuando pierdes atención, involucra al público con preguntas o cambios de ritmo.",
+          },
+        },
+        {
+          situation: "Olvidas parte de tu discurso. ¿Qué haces?",
+          options: [
+            { text: "Respiro, hago una pausa y retomo naturalmente", correct: true, points: 20 },
+            { text: "Me disculpo y admito que olvidé", correct: false, points: 0 },
+            { text: "Improviso algo completamente diferente", correct: false, points: 5 },
+          ],
+          feedback: {
+            correct: "¡Perfecto! La confianza y naturalidad mantienen la credibilidad.",
+            incorrect: "Las pausas naturales y retomar con confianza mantienen tu credibilidad intacta.",
+          },
+        },
+        {
+          situation: "Para el cierre de tu presentación, ¿qué es más efectivo?",
+          options: [
+            { text: "Resumir puntos clave y hacer un llamado a la acción", correct: true, points: 20 },
+            { text: "Agradecer y terminar abruptamente", correct: false, points: 5 },
+            { text: "Presumir sobre tu trabajo", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Excelente! Un cierre fuerte refuerza tu mensaje y motiva a la acción.",
+            incorrect: "El cierre debe reforzar tu mensaje principal y motivar a la audiencia a actuar.",
+          },
+        },
+      ],
+    },
+  }
+
+  const currentLevelData = levelData[levelId as keyof typeof levelData]
+  const currentStepData = currentLevelData?.steps[currentStep]
+  const currentPet = pets.find((p) => p.id === userData.currentPet)
+
+  if (!currentLevelData) {
+    return (
+      <div className="text-center py-20">
+        <h2 className="text-2xl font-bold mb-4">Nivel en construcción</h2>
+        <p className="text-muted-foreground mb-4">Este nivel estará disponible pronto.</p>
+        <Button onClick={onBack}>Volver al curso</Button>
+      </div>
+    )
+  }
+
+  const handleOptionSelect = (optionIndex: number) => {
+    setSelectedOption(optionIndex)
+    const option = currentStepData.options[optionIndex]
+
+    if (option.correct) {
+      setScore(score + option.points)
+      setIsCorrect(true) // Track correct answer for green feedback
+    } else {
+      setIsCorrect(false) // Track incorrect answer for red feedback
+      setWrongAnswers([...wrongAnswers, currentStep]) // Add to retry list
+      onLoseLife() // Lose a life for wrong answer
+    }
+    setShowFeedback(true)
+  }
+
+  const handleNext = () => {
+    if (currentStep < currentLevelData.steps.length - 1) {
+      setCurrentStep(currentStep + 1)
+      setSelectedOption(null)
+      setShowFeedback(false)
+      setHintUsed(false) // Reset hint for next question
+    } else {
+      // Check if need to retry wrong answers
+      if (wrongAnswers.length > 0) {
+        // Go to first wrong answer to retry
+        setCurrentStep(wrongAnswers[0])
+        setWrongAnswers(wrongAnswers.slice(1))
+        setSelectedOption(null)
+        setShowFeedback(false)
+        setHintUsed(false)
+      } else {
+        // Level completed
+        onComplete(currentLevelData.xpReward, currentLevelData.coinReward)
+      }
+    }
+  }
+
+  const showHint = () => {
+    if (!hintUsed) {
+      setHintUsed(true)
+    }
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      {/* Level header */}
+      <div className="flex items-center gap-4 mb-6">
+        <Button variant="outline" onClick={onBack} className="border-amber-300 text-amber-700 bg-transparent">
+          ← Volver al curso
+        </Button>
+        <h1 className="text-2xl font-bold text-amber-800">{currentLevelData.title}</h1>
+        <div className="text-3xl animate-bounce">{currentPet?.icon}</div>
+        <div className="flex items-center gap-2 ml-auto">
+          <Heart className="w-5 h-5 text-red-500" />
+          <span className="font-bold text-red-600">
+            {userData.lives}/{userData.maxLives}
+          </span>
+        </div>
+      </div>
+
+      {/* Level content */}
+      <Card className="relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url('/${currentLevelData.background}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <CardContent className="p-8 relative z-10">
+          {/* Progress */}
+          <div className="mb-6">
+            <div className="flex justify-between text-sm text-amber-700 mb-2">
+              <span>Progreso</span>
+              <span>
+                {currentStep + 1} de {currentLevelData.steps.length}
+                {wrongAnswers.length > 0 && ` (${wrongAnswers.length} por repetir)`}
+              </span>
+            </div>
+            <Progress value={((currentStep + 1) / currentLevelData.steps.length) * 100} />
+          </div>
+
+          {/* Story intro (only on first step) */}
+          {currentStep === 0 && (
+            <div className="mb-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+              <p className="text-amber-800">{currentLevelData.story}</p>
+            </div>
+          )}
+
+          {/* Pet hint section - separate from feedback */}
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="text-4xl">{currentPet?.icon}</div>
+              <div>
+                <p className="text-sm text-amber-600 font-medium">{currentPet?.name} está aquí para ayudarte</p>
+                {!hintUsed && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={showHint}
+                    className="mt-1 border-amber-300 hover:bg-amber-50 text-white bg-amber-700"
+                  >
+                    💡 Pedir pista (1 por nivel)
+                  </Button>
+                )}
+              </div>
+            </div>
+            {hintUsed && (
+              <div className="max-w-md p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                <div className="flex items-start gap-2">
+                  <div className="text-lg">{currentPet?.icon}</div>
+                  <div>
+                    <p className="text-sm font-medium text-blue-800">Pista de {currentPet?.name}:</p>
+                    <p className="text-sm text-blue-700">{currentLevelData.hint}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Current situation */}
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-3 text-amber-800">Situación:</h3>
+            <p className="text-amber-700 bg-white/80 p-4 rounded-lg">{currentStepData.situation}</p>
+          </div>
+
+          {/* Options */}
+          {!showFeedback && (
+            <div className="space-y-3">
+              <h4 className="font-semibold text-amber-800">¿Qué harías?</h4>
+              {currentStepData.options.map((option, index) => (
+                <Button
+                  key={index}
+                  variant="outline"
+                  className="w-full text-left justify-start p-4 h-auto border-amber-200 hover:bg-amber-50 text-white bg-amber-700"
+                  onClick={() => handleOptionSelect(index)}
+                >
+                  {option.text}
+                </Button>
+              ))}
+            </div>
+          )}
+
+          {showFeedback && (
+            <div className="space-y-4">
+              <div
+                className={`p-4 rounded-lg border-2 ${
+                  isCorrect ? "bg-green-50 border-green-300" : "bg-red-50 border-red-300"
+                }`}
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <div className={`text-2xl ${isCorrect ? "animate-bounce" : ""}`}>{isCorrect ? "✅" : "❌"}</div>
+                  <span className={`font-semibold ${isCorrect ? "text-green-800" : "text-red-800"}`}>
+                    {isCorrect ? "¡Correcto!" : "Incorrecto"}
+                  </span>
+                  {!isCorrect && <span className="text-red-600 text-sm">(-1 vida)</span>}
+                </div>
+                <p className={isCorrect ? "text-green-800" : "text-red-800"}>
+                  {isCorrect ? currentStepData.feedback.correct : currentStepData.feedback.incorrect}
+                </p>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <div className="text-sm text-amber-600">
+                  Puntos ganados: +{currentStepData.options[selectedOption!].points}
+                </div>
+                <Button
+                  onClick={handleNext}
+                  className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700"
+                >
+                  {currentStep < currentLevelData.steps.length - 1 || wrongAnswers.length > 0
+                    ? "Continuar"
+                    : "Completar Nivel"}
+                </Button>
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+const DeckCarousel = ({
+  courses,
+  onCourseSelect,
+}: { courses: Course[]; onCourseSelect: (courseId: string) => void }) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % courses.length)
+  }
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + courses.length) % courses.length)
+  }
+
+  const getCardPosition = (index: number) => {
+    const position = (index - currentIndex + courses.length) % courses.length
+    if (position === 0) return "center"
+    if (position === 1 || position === courses.length - 1) return "side"
+    return "hidden"
+  }
+
+  return (
+    <div className="relative h-[550px] flex items-center justify-center px-8">
+      <div className="relative w-full max-w-5xl flex items-center justify-center">
+        {courses.map((course, index) => {
+          const position = getCardPosition(index)
+          const isActive = position === "center"
+          const isLeft = index < currentIndex || (currentIndex === 0 && index === courses.length - 1)
+
+          if (position === "hidden") return null
+
+          return (
+            <div
+              key={course.id}
+              className={`absolute transition-all duration-700 ease-out transform ${
+                position === "center"
+                  ? "z-20 scale-110 opacity-100 translate-x-0"
+                  : position === "side"
+                    ? isLeft
+                      ? "z-10 scale-85 opacity-50 -translate-x-80"
+                      : "z-10 scale-85 opacity-50 translate-x-80"
+                    : "opacity-0"
+              }`}
+              style={{
+                pointerEvents: isActive ? "auto" : "none",
+              }}
+            >
+              <div
+                className={`w-80 h-[450px] rounded-3xl p-8 shadow-2xl border-2 transition-all duration-700 bg-gradient-to-br ${course.color} ${
+                  isActive
+                    ? "cursor-pointer hover:scale-105 hover:shadow-3xl border-white/40 hover:border-white/60"
+                    : "cursor-default border-white/20"
+                }`}
+                onClick={isActive ? () => onCourseSelect(course.id) : undefined}
+                tabIndex={isActive ? 0 : -1}
+                role="button"
+                aria-selected={isActive}
+                onKeyDown={(e) => {
+                  if (isActive && (e.key === "Enter" || e.key === " ")) {
+                    e.preventDefault()
+                    onCourseSelect(course.id)
+                  }
+                }}
+              >
+                <div className="h-full flex flex-col justify-between text-white">
+                  <div>
+                    <div className="text-6xl mb-6 text-center drop-shadow-lg">{course.icon}</div>
+                    <h3 className="text-2xl font-bold mb-4 text-center drop-shadow-md">{course.title}</h3>
+                    <p className="text-white/90 mb-6 text-center leading-relaxed drop-shadow-sm">
+                      {course.description}
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between text-sm text-white/90">
+                      <span className="font-medium">Progreso</span>
+                      <span className="font-bold">
+                        {course.completedLevels} / {course.totalLevels}
+                      </span>
+                    </div>
+                    <div className="w-full bg-white/20 rounded-full h-3 backdrop-blur-sm">
+                      <div
+                        className="bg-white h-3 rounded-full transition-all duration-500 shadow-sm"
+                        style={{ width: `${(course.completedLevels / course.totalLevels) * 100}%` }}
+                      />
+                    </div>
+
+                    {isActive && (
+                      <Button className="w-full bg-white/20 hover:bg-white/30 text-white border-2 border-white/40 hover:border-white/60 backdrop-blur-sm font-bold py-3 rounded-xl transition-all duration-300">
+                        {course.completedLevels > 0 ? "Continuar Aventura" : "Comenzar Aventura"}
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <Button
+        variant="outline"
+        size="lg"
+        onClick={handlePrev}
+        className="absolute left-4 z-30 w-16 h-16 rounded-full border-2 border-white/40 text-white hover:bg-white/20 bg-black/20 backdrop-blur-md hover:border-white/60 transition-all duration-300"
+        aria-label="Curso anterior"
+      >
+        <ChevronLeft className="w-8 h-8" />
+      </Button>
+
+      <Button
+        variant="outline"
+        size="lg"
+        onClick={handleNext}
+        className="absolute right-4 z-30 w-16 h-16 rounded-full border-2 border-white/40 text-white hover:bg-white/20 bg-black/20 backdrop-blur-md hover:border-white/60 transition-all duration-300"
+        aria-label="Siguiente curso"
+      >
+        <ChevronRight className="w-8 h-8" />
+      </Button>
+
+      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-3">
+        {courses.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "bg-white shadow-lg scale-125" : "bg-white/40 hover:bg-white/60"
+            }`}
+            aria-label={`Ir al curso ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function Nu9veAcademy() {
+  const [userData, setUserData] = useState<UserData>(initialUserData)
+  const [currentView, setCurrentView] = useState<"welcome" | "dashboard" | "course" | "level" | "shop" | "profile">(
+    "welcome",
+  )
+  const [selectedLevel, setSelectedLevel] = useState<number | null>(null)
+  const [showDailyChest, setShowDailyChest] = useState(true)
+  const [chestAnimation, setChestAnimation] = useState(false)
+  const [lifeTimer, setLifeTimer] = useState(0)
+  const [currentLevel, setCurrentLevel] = useState<number | null>(null)
+
+  const [selectedCourse, setSelectedCourse] = useState<string>("communication-v1")
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setUserData((prev) => {
+        if (prev.lives < prev.maxLives) {
+          const newTimer = lifeTimer + 1
+          if (newTimer >= 15) {
+            setLifeTimer(0)
+            return { ...prev, lives: prev.lives + 1 }
+          } else {
+            setLifeTimer(newTimer)
+            return prev
+          }
+        }
+        return prev
+      })
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [lifeTimer])
+
+  // Check for daily chest availability
+  useEffect(() => {
+    const today = new Date().toDateString()
+    if (userData.lastDailyChest !== today) {
+      setShowDailyChest(true)
+    }
+  }, [userData.lastDailyChest])
+
+  const openDailyChest = () => {
+    setChestAnimation(true)
+    const rewards = {
+      coins: Math.floor(Math.random() * 50) + 25,
+      gems: Math.floor(Math.random() * 3) + 1,
+      xp: Math.floor(Math.random() * 30) + 20,
+    }
+
+    setTimeout(() => {
+      setUserData((prev) => ({
+        ...prev,
+        coins: prev.coins + rewards.coins,
+        gems: prev.gems + rewards.gems,
+        xp: prev.xp + rewards.xp,
+        lastDailyChest: new Date().toDateString(),
+      }))
+      setShowDailyChest(false)
+      setChestAnimation(false)
+    }, 2000)
+  }
+
+  const buyLife = () => {
+    if (userData.lives < userData.maxLives && userData.coins >= 15) {
+      setUserData((prev) => ({
+        ...prev,
+        lives: prev.lives + 1,
+        coins: prev.coins - 15,
+      }))
+    }
+  }
+
+  const startLevel = (levelId: number) => {
+    setCurrentLevel(levelId)
+    setCurrentView("level")
+  }
+
+  const buyPet = (petId: string, price: number) => {
+    if (userData.coins >= price) {
+      setUserData((prev) => ({
+        ...prev,
+        coins: prev.coins - price,
+        unlockedPets: [...prev.unlockedPets, petId],
+      }))
+    }
+  }
+
+  const selectPet = (petId: string) => {
+    setUserData((prev) => ({
+      ...prev,
+      currentPet: petId,
+    }))
+  }
+
+  const loseLife = () => {
+    setUserData((prev) => ({
+      ...prev,
+      lives: Math.max(0, prev.lives - 1),
+    }))
+  }
+
+  const completeLevel = (levelId: number, xp: number, coins: number) => {
+    setUserData((prev) => {
+      const newCompletedLevels = [...prev.completedLevels]
+      if (!newCompletedLevels.includes(levelId)) {
+        newCompletedLevels.push(levelId)
+      }
+
+      return {
+        ...prev,
+        xp: prev.xp + xp,
+        coins: prev.coins + coins,
+        completedLevels: newCompletedLevels,
+      }
+    })
+
+    const nextLevelIndex = communicationLevels.findIndex((level) => level.id === levelId + 1)
+    if (nextLevelIndex !== -1) {
+      communicationLevels[nextLevelIndex].isUnlocked = true
+    }
+
+    setCurrentView("course")
+  }
+
+  const renderWelcome = () => (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 relative overflow-hidden">
+      {/* Background jungle scene */}
+      <div className="absolute inset-0 bg-[url('/jungle-campfire-night-scene-animated.png')] opacity-30 bg-cover bg-center"></div>
+
+      <Card className="max-w-md w-full mx-4 relative z-10 border-2 border-amber-300 shadow-2xl bg-white/95 backdrop-blur-sm">
+        <CardContent className="p-8 text-center">
+          {/* Animated capybara */}
+          <div className="text-8xl mb-6 animate-bounce">🦫</div>
+
+          {/* Welcome message */}
+          <h1 className="text-3xl font-bold text-amber-800 mb-4">¡Hola, Explorador! 🌅</h1>
+          <div className="text-amber-700 mb-6 space-y-2">
+            <p className="text-lg">
+              Bienvenido a tu viaje en la <strong>Comunicación Efectiva</strong>.
+            </p>
+            <p>Aquí aprenderás a expresarte con confianza, empatía y claridad.</p>
+            <p className="text-sm text-amber-600">
+              ¡Tu mascota estará contigo en cada paso, lista para ayudarte cuando lo necesites!
+            </p>
+          </div>
+
+          {/* Progress indicator */}
+          <div className="mb-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+            <div className="flex justify-between text-sm text-amber-700 mb-2">
+              <span>Progreso del Curso</span>
+              <span>0 de 8 niveles completados</span>
+            </div>
+            <Progress value={0} className="bg-amber-200" />
+          </div>
+
+          {/* Action buttons */}
+          <div className="space-y-3">
+            <Button
+              onClick={() => setCurrentView("dashboard")}
+              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-3 text-lg shadow-lg"
+            >
+              <Play className="w-5 h-5 mr-2" />
+              Comenzar Aventura
+            </Button>
+
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                className="flex-1 border-amber-300 text-amber-700 hover:bg-amber-50 bg-transparent"
+                onClick={() => {
+                  // Future: implement login
+                  setCurrentView("dashboard")
+                }}
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Iniciar Sesión
+              </Button>
+              <Button
+                variant="outline"
+                className="flex-1 border-amber-300 text-amber-700 hover:bg-amber-50 bg-transparent"
+                onClick={() => setCurrentView("dashboard")}
+              >
+                <UserPlus className="w-4 h-4 mr-2" />
+                Continuar como Invitado
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+
+  const renderDashboard = () => (
+    <div className="min-h-screen relative overflow-hidden">
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/jungle-adventure-background.jpg')`,
+          filter: "brightness(0.7)",
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-orange-900/10 to-yellow-900/20"></div>
+
+      <div className="relative z-10 p-6">
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6 bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-lg border border-white/20">
+            <div className="flex items-center gap-4">
+              <div className="text-5xl animate-bounce">
+                {petData[userData.currentPet as keyof typeof petData]?.icon || "🐹"}
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-amber-800 mb-1">¡Hola, Explorador!</h1>
+                <p className="text-amber-600">Continúa tu aventura de aprendizaje</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <Coins className="w-5 h-5 text-amber-500" />
+                <span className="font-semibold text-amber-800">{userData.coins}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Gem className="w-5 h-5 text-cyan-500" />
+                <span className="font-semibold text-cyan-800">{userData.gems}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Heart className="w-5 h-5 text-red-500" />
+                <span className="font-semibold text-red-800">
+                  {userData.lives}/{userData.maxLives}
+                </span>
+                {userData.lives < userData.maxLives && (
+                  <div className="text-xs text-red-600 ml-1">+1 en {15 - lifeTimer}s</div>
+                )}
+              </div>
+              {userData.lives < userData.maxLives && userData.coins >= 15 && (
+                <Button onClick={buyLife} size="sm" className="bg-red-500 hover:bg-red-600 text-white rounded-xl">
+                  +1 ❤️ (15🪙)
+                </Button>
+              )}
+            </div>
+          </div>
+
+          <div className="mb-8 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-white/20">
+            <div className="flex items-center justify-between">
+              <h2 className="text-lg font-bold text-amber-800">Progreso General</h2>
+              <div className="text-sm text-amber-600">{userData.completedLevels.length} niveles completados</div>
+            </div>
+            <div className="mt-2">
+              <Progress
+                value={
+                  (userData.completedLevels.length / courses.reduce((acc, course) => acc + course.totalLevels, 0)) * 100
+                }
+                className="h-2"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Cofre diario */}
+        {showDailyChest && (
+          <Card className="border-2 border-amber-400 bg-gradient-to-r from-amber-50 to-orange-50 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/treasure-chest-jungle-background.png')] opacity-10"></div>
+            <CardContent className="p-6 text-center relative z-10">
+              <div className={`text-6xl mb-4 ${chestAnimation ? "animate-bounce" : "animate-pulse"}`}>🎁</div>
+              <h3 className="text-xl font-bold mb-2 text-amber-800">¡Cofre Diario Disponible!</h3>
+              <p className="text-amber-600 mb-4">Tu capibara ha encontrado un tesoro especial</p>
+              <Button
+                onClick={openDailyChest}
+                className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg"
+                disabled={chestAnimation}
+              >
+                {chestAnimation ? "Abriendo..." : "Abrir Cofre"}
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        <div>
+          <h2 className="text-3xl font-bold mb-8 text-white text-center drop-shadow-lg">Selecciona tu Curso</h2>
+          <DeckCarousel
+            courses={courses.map((course) => ({
+              ...course,
+              completedLevels: userData.completedLevels.filter((level) => {
+                if (course.id === "communication-v1") return level >= 1 && level <= 12
+                if (course.id === "communication-v2") return level >= 13 && level <= 24
+                if (course.id === "communication-v3") return level >= 25 && level <= 36
+                if (course.id === "communication-v4") return level >= 37 && level <= 48
+                if (course.id === "communication-premium") return level >= 49 && level <= 60
+                return false
+              }).length,
+            }))}
+            onCourseSelect={(courseId) => {
+              setSelectedCourse(courseId)
+              setCurrentView("course")
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  )
+
+  const renderShop = () => (
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 p-6">
+      <div className="max-w-4xl mx-auto">
+        <div className="flex items-center gap-4 mb-6">
+          <Button
+            variant="outline"
+            onClick={() => setCurrentView("dashboard")}
+            className="border-amber-300 text-amber-700"
+          >
+            ← Volver
+          </Button>
+          <h1 className="text-3xl font-bold text-amber-800">🛍️ Tienda de Mascotas</h1>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {pets.map((pet) => (
+            <Card key={pet.id} className="border-2 border-amber-200 hover:border-amber-400 transition-colors">
+              <CardContent className="p-6 text-center">
+                <div className="text-6xl mb-4">{pet.icon}</div>
+                <h3 className="text-lg font-bold mb-2 text-amber-800">{pet.name}</h3>
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Coins className="w-4 h-4 text-yellow-500" />
+                  <span className="font-bold text-amber-700">{pet.price === 0 ? "Gratis" : pet.price}</span>
+                </div>
+                {userData.unlockedPets.includes(pet.id) ? (
+                  <div className="space-y-2">
+                    {userData.currentPet === pet.id ? (
+                      <Button disabled className="w-full bg-green-100 text-green-800">
+                        ✓ Equipada
+                      </Button>
+                    ) : (
+                      <Button
+                        onClick={() => setUserData((prev) => ({ ...prev, currentPet: pet.id }))}
+                        className="w-full bg-amber-500 hover:bg-amber-600 text-white"
+                      >
+                        Equipar
+                      </Button>
+                    )}
+                  </div>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      if (userData.coins >= pet.price) {
+                        setUserData((prev) => ({
+                          ...prev,
+                          coins: prev.coins - pet.price,
+                          unlockedPets: [...prev.unlockedPets, pet.id],
+                          currentPet: pet.id,
+                        }))
+                      }
+                    }}
+                    disabled={userData.coins < pet.price}
+                    className="w-full bg-amber-500 hover:bg-amber-600 text-white disabled:bg-gray-300"
+                  >
+                    {userData.coins >= pet.price ? "Comprar" : "Sin monedas"}
+                  </Button>
+                )}
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+
+  const renderProfile = () => (
+    <div className="space-y-6">
+      <div className="flex items-center gap-4 mb-6">
+        <Button variant="outline" onClick={() => setCurrentView("dashboard")}>
+          ← Volver
+        </Button>
+        <h1 className="text-2xl font-bold">Mi Perfil</h1>
+      </div>
+
+      <Card>
+        <CardContent className="p-6">
+          <div className="flex items-center gap-6 mb-6">
+            <div className="text-8xl">{pets.find((p) => p.id === userData.currentPet)?.icon}</div>
+            <div>
+              <h2 className="text-2xl font-bold">Explorador Nu9ve</h2>
+              <p className="text-muted-foreground">Nivel {userData.level}</p>
+              <Progress value={userData.xp % 100} className="w-48 mt-2" />
+              <p className="text-sm text-muted-foreground mt-1">{userData.xp % 100}/100 XP para el siguiente nivel</p>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="text-center p-4 bg-muted rounded-lg">
+              <Trophy className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+              <p className="font-bold text-lg">{userData.completedLevels.length}</p>
+              <p className="text-sm text-muted-foreground">Niveles Completados</p>
+            </div>
+            <div className="text-center p-4 bg-muted rounded-lg">
+              <Award className="w-8 h-8 text-purple-500 mx-auto mb-2" />
+              <p className="font-bold text-lg">{userData.badges.length}</p>
+              <p className="text-sm text-muted-foreground">Insignias Obtenidas</p>
+            </div>
+            <div className="text-center p-4 bg-muted rounded-lg">
+              <Sparkles className="w-8 h-8 text-pink-500 mx-auto mb-2" />
+              <p className="font-bold text-lg">{userData.unlockedPets.length}</p>
+              <p className="text-sm text-muted-foreground">Mascotas Desbloqueadas</p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+
+  const renderCourse = () => {
+    const getLevelIcon = (type: string) => {
+      switch (type) {
+        case "roleplay":
+          return <MessageCircle className="w-6 h-6 text-blue-500" />
+        case "interactive":
+          return <Volume2 className="w-6 h-6 text-green-500" />
+        case "video":
+          return <Eye className="w-6 h-6 text-purple-500" />
+        case "story":
+          return <Users className="w-6 h-6 text-orange-500" />
+        case "quiz":
+          return <Presentation className="w-6 h-6 text-red-500" />
+        default:
+          return <Play className="w-6 h-6" />
+      }
+    }
+
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center gap-4 mb-6">
+          <Button
+            variant="outline"
+            onClick={() => setCurrentView("dashboard")}
+            className="border-amber-300 text-amber-700 hover:bg-amber-50"
+          >
+            ← Volver
+          </Button>
+          <h1 className="text-2xl font-bold text-amber-800">Comunicación Efectiva</h1>
+          <div className="text-3xl animate-bounce">🦫</div>
+        </div>
+
+        <div className="relative">
+          <div className="grid gap-6">
+            {communicationLevels.map((level, index) => {
+              const isUnlocked = index === 0 || userData.completedLevels.includes(index)
+              const isCompleted = userData.completedLevels.includes(level.id)
+
+              return (
+                <Card
+                  key={level.id}
+                  className={`relative overflow-hidden transition-all duration-300 ${
+                    isUnlocked ? "cursor-pointer hover:shadow-xl hover:scale-[1.02]" : "opacity-50"
+                  } ${isCompleted ? "border-green-500 bg-green-50 shadow-green-200 shadow-lg" : "border-amber-200"}`}
+                >
+                  <div
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage: `url('/--getlevelbackground-level-id--.png')`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  ></div>
+
+                  <CardContent className="p-6 relative z-10">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className="relative">
+                          {isCompleted ? (
+                            <div className="relative">
+                              <CheckCircle className="w-12 h-12 text-green-500" />
+                              <div className="absolute -top-1 -right-1 text-xl">✨</div>
+                            </div>
+                          ) : isUnlocked ? (
+                            <div className="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full flex items-center justify-center text-white font-bold shadow-lg">
+                              {level.id}
+                            </div>
+                          ) : (
+                            <Lock className="w-12 h-12 text-gray-400" />
+                          )}
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            {getLevelIcon(level.type)}
+                            <h3 className="text-lg font-bold text-amber-800">{level.title}</h3>
+                          </div>
+                          <div className="flex items-center gap-4 text-sm text-amber-600">
+                            <span>⏱️ {level.duration} min</span>
+                            <span>⭐ {level.xpReward} XP</span>
+                            <span>🪙 {level.coinReward} monedas</span>
+                            <Badge variant="outline" className="border-amber-300 text-amber-700">
+                              {level.type}
+                            </Badge>
+                          </div>
+                          <p className="text-sm text-amber-600 mt-2">
+                            {level.id === 1 && "Aprende a hacer una primera impresión positiva"}
+                            {level.id === 2 && "Técnicas para escuchar activamente"}
+                            {level.id === 3 && "Domina el lenguaje corporal efectivo"}
+                            {level.id === 4 && "Resuelve conflictos con confianza"}
+                            {level.id === 5 && "Presenta ideas de manera impactante"}
+                          </p>
+                        </div>
+                      </div>
+                      {isUnlocked && (
+                        <Button
+                          onClick={() => startLevel(level.id)}
+                          disabled={!isUnlocked}
+                          className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white shadow-lg"
+                        >
+                          {isCompleted ? "Repetir" : "Jugar"}
+                        </Button>
+                      )}
+                    </div>
+                  </CardContent>
+                </Card>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <>
+      {currentView === "welcome" && renderWelcome()}
+      {currentView !== "welcome" && (
+        <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
+          <nav className="bg-white border-b border-amber-200 sticky top-0 z-50 shadow-sm">
+            <div className="max-w-6xl mx-auto px-4 py-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="text-2xl animate-pulse">🦫</div>
+                  <h1 className="text-xl font-bold text-amber-800">Nu9ve Academy</h1>
+                </div>
+                <div className="flex gap-2">
+                  <Button
+                    variant={currentView === "dashboard" ? "default" : "ghost"}
+                    onClick={() => setCurrentView("dashboard")}
+                    size="sm"
+                    className={
+                      currentView === "dashboard"
+                        ? "bg-amber-500 hover:bg-amber-600"
+                        : "text-amber-700 hover:bg-amber-50"
+                    }
+                  >
+                    <Map className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                  <Button
+                    variant={currentView === "shop" ? "default" : "ghost"}
+                    onClick={() => setCurrentView("shop")}
+                    size="sm"
+                    className={
+                      currentView === "shop" ? "bg-amber-500 hover:bg-amber-600" : "text-amber-700 hover:bg-amber-50"
+                    }
+                  >
+                    <ShoppingBag className="w-4 h-4 mr-2" />
+                    Tienda
+                  </Button>
+                  <Button
+                    variant={currentView === "profile" ? "default" : "ghost"}
+                    onClick={() => setCurrentView("profile")}
+                    size="sm"
+                    className={
+                      currentView === "profile" ? "bg-amber-500 hover:bg-amber-600" : "text-amber-700 hover:bg-amber-50"
+                    }
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    Perfil
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          <main className="max-w-6xl mx-auto p-4 py-8">
+            {currentView === "dashboard" && renderDashboard()}
+            {currentView === "course" && renderCourse()}
+            {currentView === "shop" && renderShop()}
+            {currentView === "profile" && renderProfile()}
+            {currentView === "level" && currentLevel && (
+              <LevelComponent
+                levelId={currentLevel}
+                onComplete={(xp, coins) => completeLevel(currentLevel, xp, coins)}
+                onBack={() => setCurrentView("course")}
+                userData={userData}
+                onLoseLife={loseLife}
+              />
+            )}
+          </main>
+        </div>
+      )}
+    </>
+  )
+}
+</file>
+
+<file path="components.json">
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  }
+}
+</file>
+
+<file path="components/AssessmentEngine.tsx">
+"use client"
+
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Heart, Lightbulb, Award, Star } from "lucide-react"
+
+interface AssessmentItem {
+  id: string
+  question: string
+  options: {
+    text: string
+    correct: boolean
+    points: number
+  }[]
+  feedback: {
+    correct: string
+    incorrect: string
+  }
+  hint?: string
+}
+
+interface AssessmentLevel {
+  id: string
+  title: string
+  type: "roleplay" | "quiz" | "story" | "interactive"
+  hasContinuity: boolean
+  items: AssessmentItem[]
+  background?: string
+  story?: string
+}
+
+interface AssessmentEngineProps {
+  level: AssessmentLevel
+  userData: any
+  onComplete: (result: AssessmentResult) => void
+  onBack: () => void
+  onLoseLife: () => void
+}
+
+interface AssessmentResult {
+  score: number
+  mistakes: number
+  firstTryCorrect: number
+  medal: "platinum" | "gold" | "silver"
+  timeMs: number
+}
+
+export default function AssessmentEngine({ level, userData, onComplete, onBack, onLoseLife }: AssessmentEngineProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [showFeedback, setShowFeedback] = useState(false)
+  const [score, setScore] = useState(0)
+  const [mistakes, setMistakes] = useState(0)
+  const [firstTryCorrect, setFirstTryCorrect] = useState(0)
+  const [retryQueue, setRetryQueue] = useState<AssessmentItem[]>([])
+  const [isRetryRound, setIsRetryRound] = useState(false)
+  const [hintUsed, setHintUsed] = useState(false)
+  const [startTime] = useState(Date.now())
+  const [attemptedItems, setAttemptedItems] = useState<Set<string>>(new Set())
+  const [shuffledItems, setShuffledItems] = useState<AssessmentItem[]>([])
+
+  const petData = {
+    "baby-capybara": { icon: "🐹", name: "Capi Bebé" },
+    "adult-capybara": { icon: "🦫", name: "Capi Adulto" },
+    "golden-capybara": { icon: "✨🦫", name: "Capi Dorado" },
+    "ninja-capybara": { icon: "🥷🦫", name: "Capi Ninja" },
+  }[userData.currentPet] || { icon: "🐹", name: "Capi Bebé" }
+
+  // Initialize shuffled items for quiz levels
+  useEffect(() => {
+    if (!level.hasContinuity) {
+      // Shuffle items with stable seed for resume capability
+      const shuffled = [...level.items].sort(() => Math.random() - 0.5)
+      setShuffledItems(shuffled)
+    } else {
+      setShuffledItems(level.items)
+    }
+  }, [level])
+
+  const currentItems = isRetryRound ? retryQueue : shuffledItems
+  const currentItem = currentItems[currentIndex]
+
+  const calculateMedal = (mistakeCount: number): "platinum" | "gold" | "silver" => {
+    if (mistakeCount === 0) return "platinum"
+    if (mistakeCount <= 2) return "gold"
+    return "silver"
+  }
+
+  const handleOptionSelect = (optionIndex: number) => {
+    setSelectedOption(optionIndex)
+    const option = currentItem.options[optionIndex]
+    const isFirstTry = !attemptedItems.has(currentItem.id)
+
+    if (option.correct) {
+      const points = isFirstTry ? option.points + 25 : option.points // First-try bonus
+      setScore((prev) => prev + points)
+
+      if (isFirstTry) {
+        setFirstTryCorrect((prev) => prev + 1)
+      }
+
+      if (isRetryRound) {
+        // Remove from retry queue
+        setRetryQueue((prev) => prev.filter((item) => item.id !== currentItem.id))
+      }
+    } else {
+      setMistakes((prev) => prev + 1)
+      setScore((prev) => prev - 50) // Penalty for wrong answer
+      onLoseLife()
+      setAttemptedItems((prev) => new Set(prev).add(currentItem.id))
+
+      if (!level.hasContinuity && !isRetryRound) {
+        // Add to retry queue for quiz levels
+        setRetryQueue((prev) => [...prev, currentItem])
+      }
+    }
+
+    setShowFeedback(true)
+  }
+
+  const handleNext = () => {
+    const option = currentItem.options[selectedOption!]
+
+    if (level.hasContinuity) {
+      // Continuity flow: always advance regardless of correctness
+      if (currentIndex < currentItems.length - 1) {
+        setCurrentIndex((prev) => prev + 1)
+        resetForNextItem()
+      } else {
+        completeAssessment()
+      }
+    } else {
+      // Quiz flow: advance only if correct, or handle retry logic
+      if (option.correct) {
+        if (isRetryRound) {
+          // In retry round, check if queue is empty
+          if (retryQueue.filter((item) => item.id !== currentItem.id).length === 0) {
+            completeAssessment()
+          } else {
+            setCurrentIndex(0) // Reset to first item in retry queue
+            resetForNextItem()
+          }
+        } else {
+          // First pass: advance to next item
+          if (currentIndex < currentItems.length - 1) {
+            setCurrentIndex((prev) => prev + 1)
+            resetForNextItem()
+          } else {
+            // First pass complete, check if retry round needed
+            if (retryQueue.length > 0) {
+              setIsRetryRound(true)
+              setCurrentIndex(0)
+              resetForNextItem()
+            } else {
+              completeAssessment()
+            }
+          }
+        }
+      } else {
+        // Wrong answer: stay on same item for immediate retry
+        resetForNextItem()
+      }
+    }
+  }
+
+  const resetForNextItem = () => {
+    setSelectedOption(null)
+    setShowFeedback(false)
+    setHintUsed(false)
+  }
+
+  const completeAssessment = () => {
+    const timeMs = Date.now() - startTime
+    const medal = calculateMedal(mistakes)
+
+    const result: AssessmentResult = {
+      score,
+      mistakes,
+      firstTryCorrect,
+      medal,
+      timeMs,
+    }
+
+    onComplete(result)
+  }
+
+  const showHint = () => {
+    if (!hintUsed && currentItem.hint) {
+      setHintUsed(true)
+    }
+  }
+
+  const getMedalIcon = (medal: string) => {
+    switch (medal) {
+      case "platinum":
+        return <Award className="w-5 h-5 text-blue-500" />
+      case "gold":
+        return <Award className="w-5 h-5 text-yellow-500" />
+      case "silver":
+        return <Award className="w-5 h-5 text-gray-400" />
+      default:
+        return <Star className="w-5 h-5 text-gray-300" />
+    }
+  }
+
+  if (!currentItem) {
+    return (
+      <div className="max-w-4xl mx-auto p-6 text-center">
+        <h2 className="text-2xl font-bold mb-4">Cargando...</h2>
+      </div>
+    )
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <div className="flex items-center gap-4 mb-6">
+        <Button variant="outline" onClick={onBack} className="border-amber-300 text-amber-700 bg-transparent">
+          ← Volver al curso
+        </Button>
+        <h1 className="text-2xl font-bold text-amber-800">{level.title}</h1>
+        <div className="text-3xl animate-bounce">{petData.icon}</div>
+        <div className="flex items-center gap-4 ml-auto">
+          <div className="flex items-center gap-2">
+            <Heart className="w-5 h-5 text-red-500" />
+            <span className="font-bold text-red-600">
+              {userData.lives}/{userData.maxLives}
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            {getMedalIcon(calculateMedal(mistakes))}
+            <span className="text-sm text-gray-600">
+              {mistakes === 0 ? "Platino" : mistakes <= 2 ? "Oro" : "Plata"}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <Card className="relative overflow-hidden border-2 border-amber-300">
+        {level.background && (
+          <div
+            className="absolute inset-0 opacity-20"
+            style={{
+              backgroundImage: `url('${level.background}')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          />
+        )}
+
+        <CardContent className="p-8 relative z-10">
+          <div className="mb-6">
+            <div className="flex justify-between text-sm text-amber-700 mb-2">
+              <span>{isRetryRound ? "Repaso" : "Progreso"}</span>
+              <span>
+                {isRetryRound ? `${retryQueue.length} por repasar` : `${currentIndex + 1} / ${currentItems.length}`}
+              </span>
+            </div>
+            <Progress
+              value={
+                isRetryRound
+                  ? ((retryQueue.length - retryQueue.filter((item) => item.id !== currentItem.id).length) /
+                      retryQueue.length) *
+                    100
+                  : ((currentIndex + 1) / currentItems.length) * 100
+              }
+            />
+          </div>
+
+          {currentIndex === 0 && level.story && !isRetryRound && (
+            <div className="mb-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+              <p className="text-amber-800">{level.story}</p>
+            </div>
+          )}
+
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="text-4xl">{petData.icon}</div>
+              <div>
+                <p className="text-sm text-amber-600">{petData.name} está aquí para ayudarte</p>
+                {hintUsed && currentItem.hint && (
+                  <div className="mt-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <p className="text-blue-800 text-sm">💡 {currentItem.hint}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            {currentItem.hint && (
+              <Button
+                onClick={showHint}
+                disabled={hintUsed}
+                variant="outline"
+                size="sm"
+                className="border-blue-300 text-blue-700 bg-transparent"
+              >
+                <Lightbulb className="w-4 h-4 mr-2" />
+                {hintUsed ? "Pista usada" : "Pedir pista"}
+              </Button>
+            )}
+          </div>
+
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold mb-4 text-amber-800">{currentItem.question}</h3>
+            <div className="space-y-3">
+              {currentItem.options.map((option, index) => (
+                <Button
+                  key={index}
+                  onClick={() => handleOptionSelect(index)}
+                  disabled={showFeedback}
+                  variant={selectedOption === index ? "default" : "outline"}
+                  className={`w-full text-left justify-start p-4 h-auto ${
+                    selectedOption === index
+                      ? option.correct
+                        ? "bg-green-500 hover:bg-green-600 text-white border-green-600"
+                        : "bg-red-500 hover:bg-red-600 text-white border-red-600"
+                      : "border-amber-300 text-amber-700 hover:bg-amber-50"
+                  }`}
+                >
+                  {option.text}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {showFeedback && (
+            <div
+              className={`mb-6 p-4 rounded-lg border ${
+                currentItem.options[selectedOption!].correct
+                  ? "bg-green-50 border-green-200"
+                  : "bg-red-50 border-red-200"
+              }`}
+            >
+              <p
+                className={`font-medium ${
+                  currentItem.options[selectedOption!].correct ? "text-green-800" : "text-red-800"
+                }`}
+              >
+                {currentItem.options[selectedOption!].correct
+                  ? currentItem.feedback.correct
+                  : currentItem.feedback.incorrect}
+              </p>
+              <Button onClick={handleNext} className="mt-4 bg-amber-500 hover:bg-amber-600 text-white">
+                {currentItem.options[selectedOption!].correct
+                  ? (isRetryRound && retryQueue.filter((item) => item.id !== currentItem.id).length === 0) ||
+                    (!isRetryRound && currentIndex === currentItems.length - 1 && retryQueue.length === 0)
+                    ? "Completar nivel"
+                    : "Siguiente"
+                  : "Intentar de nuevo"}
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+</file>
+
+<file path="components/CourseCard.tsx">
+"use client"
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Progress } from "@/components/ui/progress"
+
+interface CourseCardProps {
+  course: {
+    id: string
+    title: string
+    description: string
+    icon: string
+    color: string
+    totalLevels: number
+    completedLevels: number
+  }
+  isActive?: boolean
+  onSelect: () => void
+  className?: string
+}
+
+export default function CourseCard({ course, isActive = false, onSelect, className = "" }: CourseCardProps) {
+  const progressPercentage = (course.completedLevels / course.totalLevels) * 100
+
+  return (
+    <Card
+      className={`
+        relative overflow-hidden cursor-pointer transition-all duration-300 border-2
+        ${
+          isActive
+            ? "border-amber-400 shadow-2xl scale-105 z-10"
+            : "border-amber-200 shadow-lg hover:shadow-xl opacity-75 hover:opacity-90"
+        }
+        ${className}
+      `}
+      onClick={onSelect}
+      style={{
+        aspectRatio: "3/4",
+        minHeight: "320px",
+      }}
+    >
+      <div className={`h-3 bg-gradient-to-r ${course.color}`} />
+
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between">
+          <div className="text-4xl mb-2">{course.icon}</div>
+          <div className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full font-medium">
+            {course.completedLevels}/{course.totalLevels}
+          </div>
+        </div>
+        <CardTitle className="text-lg text-amber-800 leading-tight">{course.title}</CardTitle>
+        <p className="text-sm text-amber-600 line-clamp-2">{course.description}</p>
+      </CardHeader>
+
+      <CardContent className="pt-0">
+        <div className="mb-4">
+          <div className="flex justify-between text-xs text-amber-700 mb-1">
+            <span>Progreso</span>
+            <span>{Math.round(progressPercentage)}%</span>
+          </div>
+          <Progress value={progressPercentage} className="h-2" />
+        </div>
+
+        <Button
+          className={`w-full ${
+            isActive
+              ? "bg-amber-500 hover:bg-amber-600 text-white shadow-md"
+              : "bg-amber-100 hover:bg-amber-200 text-amber-800"
+          }`}
+          onClick={(e) => {
+            e.stopPropagation()
+            onSelect()
+          }}
+        >
+          {course.completedLevels === 0 ? "Comenzar" : "Continuar"}
+        </Button>
+      </CardContent>
+
+      {course.completedLevels === course.totalLevels && (
+        <div className="absolute top-2 right-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+          ✓ Completado
+        </div>
+      )}
+    </Card>
+  )
+}
+</file>
+
+<file path="components/DeckCarousel.tsx">
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import CourseCard from "./CourseCard"
+
+interface Course {
+  id: string
+  title: string
+  description: string
+  icon: string
+  color: string
+  totalLevels: number
+  completedLevels: number
+}
+
+interface DeckCarouselProps {
+  courses: Course[]
+  onCourseSelect: (courseId: string) => void
+}
+
+export default function DeckCarousel({ courses, onCourseSelect }: DeckCarouselProps) {
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  const goToPrevious = () => {
+    setActiveIndex((prev) => (prev === 0 ? courses.length - 1 : prev - 1))
+  }
+
+  const goToNext = () => {
+    setActiveIndex((prev) => (prev === courses.length - 1 ? 0 : prev + 1))
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") goToPrevious()
+    if (e.key === "ArrowRight") goToNext()
+  }
+
+  return (
+    <div className="relative w-full max-w-4xl mx-auto" onKeyDown={handleKeyDown} tabIndex={0}>
+      <div className="relative h-96 flex items-center justify-center perspective-1000">
+        {courses.map((course, index) => {
+          const offset = index - activeIndex
+          const isActive = index === activeIndex
+
+          return (
+            <div
+              key={course.id}
+              className={`
+                absolute transition-all duration-500 ease-out
+                ${isActive ? "z-20" : "z-10"}
+              `}
+              style={{
+                transform: `
+                  translateX(${offset * 120}px) 
+                  translateZ(${isActive ? 0 : -100}px)
+                  rotateY(${offset * -15}deg)
+                  scale(${isActive ? 1 : 0.85})
+                `,
+                opacity: Math.abs(offset) > 1 ? 0 : isActive ? 1 : 0.6,
+              }}
+            >
+              <CourseCard
+                course={course}
+                isActive={isActive}
+                onSelect={() => onCourseSelect(course.id)}
+                className="w-64"
+              />
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="flex justify-center gap-4 mt-6">
+        <Button
+          onClick={goToPrevious}
+          variant="outline"
+          size="sm"
+          className="border-amber-300 text-amber-700 hover:bg-amber-50 bg-transparent"
+        >
+          <ChevronLeft className="w-4 h-4" />
+        </Button>
+
+        <div className="flex items-center gap-2">
+          {courses.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveIndex(index)}
+              className={`w-2 h-2 rounded-full transition-colors ${
+                index === activeIndex ? "bg-amber-500" : "bg-amber-200"
+              }`}
+            />
+          ))}
+        </div>
+
+        <Button
+          onClick={goToNext}
+          variant="outline"
+          size="sm"
+          className="border-amber-300 text-amber-700 hover:bg-amber-50 bg-transparent"
+        >
+          <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="components/FirstEncountersLevel.tsx">
+"use client"
+
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { MessageCircle, Lightbulb, Star, ArrowRight } from "lucide-react"
+
+interface Choice {
+  id: string
+  text: string
+  points: number
+  feedback: string
+  capibaraTip: string
+}
+
+interface Scenario {
+  id: number
+  situation: string
+  character: string
+  choices: Choice[]
+}
+
+const scenarios: Scenario[] = [
+  {
+    id: 1,
+    situation:
+      "Te encuentras en una conferencia de networking y ves a alguien interesante cerca de la mesa de café. ¿Cómo te acercas?",
+    character: "Profesional de marketing",
+    choices: [
+      {
+        id: "a",
+        text: "Me acerco directamente y digo: 'Hola, soy [nombre], ¿en qué trabajas?'",
+        points: 60,
+        feedback: "Directo pero un poco abrupto. Podrías ser más cálido en tu aproximación.",
+        capibaraTip: "Recuerda que la primera impresión es clave. ¡Sonríe siempre y muestra interés genuino!",
+      },
+      {
+        id: "b",
+        text: "Espero a que termine de servirse café y comento: 'Este café huele increíble, ¿has probado los pasteles?'",
+        points: 90,
+        feedback: "¡Excelente! Iniciaste con algo neutral y amigable que invita a la conversación.",
+        capibaraTip: "¡Perfecto! Usar el entorno como punto de partida es una técnica genial 🎉",
+      },
+      {
+        id: "c",
+        text: "Me quedo esperando a que esa persona me hable primero",
+        points: 20,
+        feedback: "Muy pasivo. Las oportunidades de networking requieren que tomes la iniciativa.",
+        capibaraTip: "¡Vamos, explorador! La confianza se construye con práctica. ¡Inténtalo de nuevo!",
+      },
+    ],
+  },
+  {
+    id: 2,
+    situation: "La conversación va bien y quieres conocer más sobre su trabajo. ¿Qué preguntas?",
+    character: "Profesional de marketing",
+    choices: [
+      {
+        id: "a",
+        text: "¿Cuánto ganas en tu trabajo?",
+        points: 10,
+        feedback: "¡Demasiado personal! Esta pregunta puede hacer que la persona se sienta incómoda.",
+        capibaraTip: "¡Ups! Evita temas muy personales al principio. Mejor enfócate en sus intereses profesionales.",
+      },
+      {
+        id: "b",
+        text: "¿Qué es lo que más te gusta de trabajar en marketing?",
+        points: 95,
+        feedback: "¡Perfecto! Esta pregunta muestra interés genuino y permite que la persona comparta su pasión.",
+        capibaraTip: "¡Excelente elección! Las preguntas sobre pasiones crean conexiones auténticas ✨",
+      },
+      {
+        id: "c",
+        text: "Ah, marketing... debe ser fácil, ¿no?",
+        points: 30,
+        feedback: "Esto puede sonar condescendiente. Evita minimizar el trabajo de otros.",
+        capibaraTip: "Recuerda mostrar respeto por el trabajo de otros. ¡Cada profesión tiene sus desafíos!",
+      },
+    ],
+  },
+]
+
+export default function FirstEncountersLevel() {
+  const [currentScenario, setCurrentScenario] = useState(0)
+  const [selectedChoice, setSelectedChoice] = useState<string | null>(null)
+  const [showFeedback, setShowFeedback] = useState(false)
+  const [totalPoints, setTotalPoints] = useState(0)
+  const [showCapibaraTip, setShowCapibaraTip] = useState(false)
+
+  const handleChoiceSelect = (choice: Choice) => {
+    setSelectedChoice(choice.id)
+    setShowFeedback(true)
+    setTotalPoints((prev) => prev + choice.points)
+
+    // Show capybara tip after a delay
+    setTimeout(() => {
+      setShowCapibaraTip(true)
+    }, 1500)
+  }
+
+  const nextScenario = () => {
+    if (currentScenario < scenarios.length - 1) {
+      setCurrentScenario((prev) => prev + 1)
+      setSelectedChoice(null)
+      setShowFeedback(false)
+      setShowCapibaraTip(false)
+    }
+  }
+
+  const currentScene = scenarios[currentScenario]
+  const selectedChoiceData = currentScene.choices.find((c) => c.id === selectedChoice)
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-100 relative overflow-hidden">
+      {/* Animated jungle background */}
+      <div
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: `url('/jungle-campfire-night-scene-animated.png')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      ></div>
+
+      <div className="relative z-10 max-w-4xl mx-auto p-6">
+        {/* Header */}
+        <Card className="mb-6 border-amber-200 bg-white/90 backdrop-blur-sm">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <MessageCircle className="w-8 h-8 text-amber-600" />
+                <div>
+                  <CardTitle className="text-2xl text-amber-800">Primeros Encuentros</CardTitle>
+                  <p className="text-amber-600">Aprende a hacer una primera impresión positiva</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <Badge className="bg-amber-500 text-white">
+                  <Star className="w-4 h-4 mr-1" />
+                  {totalPoints} puntos
+                </Badge>
+                <div className="text-4xl animate-bounce">🦫</div>
+              </div>
+            </div>
+            <Progress value={((currentScenario + 1) / scenarios.length) * 100} className="mt-4" />
+            <p className="text-sm text-amber-600">
+              Escenario {currentScenario + 1} de {scenarios.length}
+            </p>
+          </CardHeader>
+        </Card>
+
+        {/* Main scenario */}
+        <Card className="mb-6 border-amber-200 bg-white/95 backdrop-blur-sm">
+          <CardContent className="p-8">
+            <div className="mb-6">
+              <Badge variant="outline" className="mb-4 border-amber-300 text-amber-700">
+                {currentScene.character}
+              </Badge>
+              <h3 className="text-xl font-semibold text-amber-800 mb-4">{currentScene.situation}</h3>
+            </div>
+
+            {/* Choices */}
+            <div className="space-y-4">
+              {currentScene.choices.map((choice) => (
+                <Button
+                  key={choice.id}
+                  variant={selectedChoice === choice.id ? "default" : "outline"}
+                  className={`w-full text-left p-6 h-auto justify-start ${
+                    selectedChoice === choice.id
+                      ? "bg-amber-500 hover:bg-amber-600 text-white"
+                      : "border-amber-200 text-amber-800 hover:bg-amber-50"
+                  }`}
+                  onClick={() => handleChoiceSelect(choice)}
+                  disabled={showFeedback}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="font-bold text-lg">{choice.id.toUpperCase()})</span>
+                    <span className="text-base leading-relaxed">{choice.text}</span>
+                  </div>
+                </Button>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Feedback */}
+        {showFeedback && selectedChoiceData && (
+          <Card className="mb-6 border-green-200 bg-green-50/90 backdrop-blur-sm animate-in slide-in-from-bottom duration-500">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="text-3xl">
+                  {selectedChoiceData.points >= 80 ? "🎉" : selectedChoiceData.points >= 60 ? "👍" : "💭"}
+                </div>
+                <div className="flex-1">
+                  <h4 className="font-semibold text-green-800 mb-2">+{selectedChoiceData.points} puntos</h4>
+                  <p className="text-green-700">{selectedChoiceData.feedback}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Capybara tip */}
+        {showCapibaraTip && selectedChoiceData && (
+          <Card className="mb-6 border-blue-200 bg-blue-50/90 backdrop-blur-sm animate-in slide-in-from-right duration-700">
+            <CardContent className="p-6">
+              <div className="flex items-start gap-4">
+                <div className="text-4xl animate-bounce">🦫</div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Lightbulb className="w-5 h-5 text-blue-600" />
+                    <h4 className="font-semibold text-blue-800">Consejo de Capi</h4>
+                  </div>
+                  <p className="text-blue-700">{selectedChoiceData.capibaraTip}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
+        {/* Next button */}
+        {showFeedback && (
+          <div className="text-center">
+            {currentScenario < scenarios.length - 1 ? (
+              <Button
+                onClick={nextScenario}
+                className="bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white px-8 py-3 text-lg"
+              >
+                Siguiente Escenario
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            ) : (
+              <Button className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-3 text-lg">
+                ¡Completar Nivel!
+                <Star className="w-5 h-5 ml-2" />
+              </Button>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="components/LevelComponent.tsx">
+"use client"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Progress } from "@/components/ui/progress"
+import { Heart, Lightbulb } from "lucide-react"
+
+interface LevelComponentProps {
+  levelId: number
+  userData: any
+  onComplete: (xp: number, coins: number) => void
+  onBack: () => void
+  onLoseLife: () => void
+}
+
+export default function LevelComponent({ levelId, userData, onComplete, onBack, onLoseLife }: LevelComponentProps) {
+  const [currentStep, setCurrentStep] = useState(0)
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [showFeedback, setShowFeedback] = useState(false)
+  const [score, setScore] = useState(0)
+  const [hintUsed, setHintUsed] = useState(false)
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
+  const [correctOnFirstTry, setCorrectOnFirstTry] = useState(0)
+  const [attemptedQuestions, setAttemptedQuestions] = useState<Set<number>>(new Set())
+
+  const currentPet = userData.unlockedPets.find((petId: string) => petId === userData.currentPet)
+  const petData = {
+    "baby-capybara": { icon: "🐹", name: "Capi Bebé" },
+    "adult-capybara": { icon: "🦫", name: "Capi Adulto" },
+    "golden-capybara": { icon: "✨🦫", name: "Capi Dorado" },
+    "ninja-capybara": { icon: "🥷🦫", name: "Capi Ninja" },
+  }[userData.currentPet] || { icon: "🐹", name: "Capi Bebé" }
+
+  const levelBackgrounds = {
+    1: "/assets/worlds/campamento.png",
+    2: "/assets/worlds/selva.png",
+    3: "/assets/worlds/rio.png",
+    4: "/assets/worlds/montana.png",
+    5: "/assets/worlds/mercado.png",
+  }
+
+  const levelData = {
+    1: {
+      title: "Primeros Encuentros",
+      type: "roleplay",
+      duration: 8,
+      xpReward: 50,
+      coinReward: 20,
+      background: levelBackgrounds[1],
+      story:
+        "Llegas a un campamento de capibaras exploradoras en medio de la selva. Es tu primer día y necesitas presentarte al grupo. Tu objetivo es causar una buena primera impresión.",
+      hint: "Recuerda: una sonrisa genuina y mostrar interés por los demás son claves universales para conectar.",
+      steps: [
+        {
+          situation: "¿Cómo saludarás a una capibara desconocida que se acerca a ti?",
+          options: [
+            { text: "Con una sonrisa cálida y contacto visual directo", correct: true, points: 20 },
+            { text: "Con un saludo rápido sin mirar mucho", correct: false, points: 0 },
+            { text: "Esperando a que ella hable primero", correct: false, points: 0 },
+          ],
+          feedback: {
+            correct: "¡Excelente! El contacto visual y la sonrisa genuina transmiten confianza y apertura.",
+            incorrect:
+              "Una sonrisa cálida y contacto visual directo son fundamentales para una buena primera impresión.",
+          },
+        },
+        // ... existing steps ...
+      ],
+    },
+    // ... existing level data ...
+  }
+
+  const currentLevelData = levelData[levelId as keyof typeof levelData]
+
+  if (!currentLevelData) {
+    return (
+      <div className="max-w-4xl mx-auto p-6 text-center">
+        <h2 className="text-2xl font-bold mb-4">Nivel en Desarrollo</h2>
+        <p className="text-muted-foreground mb-4">Este nivel estará disponible pronto.</p>
+        <Button onClick={onBack}>Volver al curso</Button>
+      </div>
+    )
+  }
+
+  const currentStepData = currentLevelData.steps[currentStep]
+
+  const handleOptionSelect = (optionIndex: number) => {
+    setSelectedOption(optionIndex)
+    const option = currentStepData.options[optionIndex]
+
+    if (option.correct) {
+      setScore(score + option.points)
+      setIsCorrect(true)
+      if (!attemptedQuestions.has(currentStep)) {
+        setCorrectOnFirstTry(correctOnFirstTry + 1)
+      }
+    } else {
+      setIsCorrect(false)
+      onLoseLife() // Lose a life for wrong answer
+      setAttemptedQuestions(new Set(attemptedQuestions).add(currentStep))
+    }
+    setShowFeedback(true)
+  }
+
+  const handleNext = () => {
+    if (isCorrect) {
+      // Only advance if answer is correct
+      if (currentStep < currentLevelData.steps.length - 1) {
+        setCurrentStep(currentStep + 1)
+        setSelectedOption(null)
+        setShowFeedback(false)
+        setHintUsed(false)
+        setIsCorrect(null)
+      } else {
+        // Level completed
+        onComplete(currentLevelData.xpReward, currentLevelData.coinReward)
+      }
+    } else {
+      // Reset for immediate retry on same question
+      setSelectedOption(null)
+      setShowFeedback(false)
+      setIsCorrect(null)
+      // Don't advance currentStep - stay on same question
+    }
+  }
+
+  const showHint = () => {
+    if (!hintUsed) {
+      setHintUsed(true)
+    }
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <div className="flex items-center gap-4 mb-6">
+        <Button variant="outline" onClick={onBack} className="border-amber-300 text-amber-700 bg-transparent">
+          ← Volver al curso
+        </Button>
+        <h1 className="text-2xl font-bold text-amber-800">{currentLevelData.title}</h1>
+        <div className="text-3xl animate-bounce">{petData.icon}</div>
+        <div className="flex items-center gap-2 ml-auto">
+          <Heart className="w-5 h-5 text-red-500" />
+          <span className="font-bold text-red-600">
+            {userData.lives}/{userData.maxLives}
+          </span>
+        </div>
+      </div>
+
+      <Card className="relative overflow-hidden border-2 border-amber-300">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `url('${currentLevelData.background}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+
+        <CardContent className="p-8 relative z-10">
+          <div className="mb-6">
+            <div className="flex justify-between text-sm text-amber-700 mb-2">
+              <span>Progreso</span>
+              <span>
+                {correctOnFirstTry} correctas / {currentLevelData.steps.length} preguntas
+              </span>
+            </div>
+            <Progress value={((currentStep + 1) / currentLevelData.steps.length) * 100} />
+          </div>
+
+          {currentStep === 0 && (
+            <div className="mb-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+              <p className="text-amber-800">{currentLevelData.story}</p>
+            </div>
+          )}
+
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="text-4xl">{petData.icon}</div>
+              <div>
+                <p className="text-sm text-amber-600">{petData.name} está aquí para ayudarte</p>
+                {hintUsed && (
+                  <div className="mt-2 p-3 bg-blue-50 rounded-lg border border-blue-200">
+                    <p className="text-blue-800 text-sm">💡 {currentLevelData.hint}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+            <Button
+              onClick={showHint}
+              disabled={hintUsed}
+              variant="outline"
+              size="sm"
+              className="border-blue-300 text-blue-700 bg-transparent"
+            >
+              <Lightbulb className="w-4 h-4 mr-2" />
+              {hintUsed ? "Pista usada" : "Pedir pista"}
+            </Button>
+          </div>
+
+          <div className="mb-6">
+            <h3 className="text-xl font-semibold mb-4 text-amber-800">{currentStepData.situation}</h3>
+            <div className="space-y-3">
+              {currentStepData.options.map((option, index) => (
+                <Button
+                  key={index}
+                  onClick={() => handleOptionSelect(index)}
+                  disabled={showFeedback}
+                  variant={selectedOption === index ? "default" : "outline"}
+                  className={`w-full text-left justify-start p-4 h-auto ${
+                    selectedOption === index
+                      ? isCorrect
+                        ? "bg-green-500 hover:bg-green-600 text-white border-green-600"
+                        : "bg-red-500 hover:bg-red-600 text-white border-red-600"
+                      : "border-amber-300 text-amber-700 hover:bg-amber-50"
+                  }`}
+                >
+                  {option.text}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          {showFeedback && (
+            <div
+              className={`mb-6 p-4 rounded-lg border ${
+                isCorrect ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"
+              }`}
+            >
+              <p className={`font-medium ${isCorrect ? "text-green-800" : "text-red-800"}`}>
+                {isCorrect ? currentStepData.feedback.correct : currentStepData.feedback.incorrect}
+              </p>
+              <Button onClick={handleNext} className="mt-4 bg-amber-500 hover:bg-amber-600 text-white">
+                {isCorrect
+                  ? currentStep < currentLevelData.steps.length - 1
+                    ? "Siguiente"
+                    : "Completar nivel"
+                  : "Intentar de nuevo"}
+              </Button>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+</file>
+
+<file path="components/QuizLevel.tsx">
+"use client"
+
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Star, ArrowLeft, Brain, Target } from "lucide-react"
+
+interface QuizQuestion {
+  id: number
+  question: string
+  options: string[]
+  correctAnswer: number
+  explanation: string
+  points: number
+  category: string
+}
+
+interface QuizLevelProps {
+  levelId: number
+  onComplete: (score: number, badges: string[]) => void
+  onExit: () => void
+}
+
+const quizQuestions: QuizQuestion[] = [
+  {
+    id: 1,
+    question: "¿Cuál es el principio más importante para establecer rapport en una primera conversación?",
+    options: [
+      "Hablar sobre tus logros profesionales",
+      "Encontrar puntos en común y mostrar interés genuino",
+      "Hacer preguntas directas sobre el trabajo",
+      "Mantener una postura dominante",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "El rapport se construye encontrando conexiones genuinas y mostrando interés real en la otra persona. Esto activa el principio de simpatía de Cialdini.",
+    points: 20,
+    category: "Construcción de Rapport",
+  },
+  {
+    id: 2,
+    question: "Cuando alguien comparte un problema contigo, ¿cuál es la mejor respuesta inicial?",
+    options: [
+      "Ofrecer una solución inmediata",
+      "Cambiar de tema para aliviar la tensión",
+      "Validar sus sentimientos y hacer preguntas para entender mejor",
+      "Contar una experiencia similar tuya",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "La escucha activa requiere primero validar los sentimientos de la persona y buscar entender completamente antes de ofrecer soluciones.",
+    points: 25,
+    category: "Escucha Activa",
+  },
+  {
+    id: 3,
+    question: "¿Qué porcentaje de la comunicación se transmite a través del lenguaje corporal?",
+    options: ["25%", "40%", "55%", "70%"],
+    correctAnswer: 2,
+    explanation:
+      "Según Albert Mehrabian, el 55% de la comunicación es lenguaje corporal, 38% tono de voz y solo 7% palabras. El lenguaje no verbal es crucial.",
+    points: 15,
+    category: "Comunicación No Verbal",
+  },
+  {
+    id: 4,
+    question: "En una situación de conflicto, ¿cuál es la estrategia más efectiva?",
+    options: [
+      "Defender tu posición firmemente",
+      "Evitar el conflicto completamente",
+      "Buscar entender la perspectiva del otro antes de responder",
+      "Usar tu autoridad para resolver rápidamente",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "La resolución efectiva de conflictos comienza con la comprensión empática. Esto reduce la defensividad y abre espacio para soluciones colaborativas.",
+    points: 30,
+    category: "Resolución de Conflictos",
+  },
+  {
+    id: 5,
+    question: "¿Cuál es la técnica más efectiva para dar feedback constructivo?",
+    options: [
+      "Sandwich: positivo-negativo-positivo",
+      "Ser directo y honesto sin rodeos",
+      "SBI: Situación-Comportamiento-Impacto + pregunta abierta",
+      "Esperar a la evaluación anual",
+    ],
+    correctAnswer: 2,
+    explanation:
+      "El modelo SBI (Situación-Comportamiento-Impacto) es más efectivo porque es específico, observable y se enfoca en comportamientos modificables, no en la persona.",
+    points: 25,
+    category: "Feedback Efectivo",
+  },
+  {
+    id: 6,
+    question: "¿Qué hace que una presentación sea más persuasiva?",
+    options: [
+      "Muchos datos y estadísticas",
+      "Historias que conecten emocionalmente + datos de apoyo",
+      "Hablar rápido para cubrir más contenido",
+      "Usar jerga técnica para mostrar expertise",
+    ],
+    correctAnswer: 1,
+    explanation:
+      "Las historias activan múltiples áreas del cerebro y crean conexión emocional, mientras que los datos proporcionan respaldo lógico. La combinación es poderosa.",
+    points: 20,
+    category: "Presentaciones",
+  },
+]
+
+export default function QuizLevel({ levelId, onComplete, onExit }: QuizLevelProps) {
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
+  const [showResult, setShowResult] = useState(false)
+  const [score, setScore] = useState(0)
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+  const [answers, setAnswers] = useState<number[]>([])
+
+  const question = quizQuestions[currentQuestion]
+  const isLastQuestion = currentQuestion === quizQuestions.length - 1
+
+  const handleAnswerSelect = (answerIndex: number) => {
+    setSelectedAnswer(answerIndex)
+  }
+
+  const handleNextQuestion = () => {
+    if (selectedAnswer === null) return
+
+    const isCorrect = selectedAnswer === question.correctAnswer
+    const newAnswers = [...answers, selectedAnswer]
+    setAnswers(newAnswers)
+
+    if (isCorrect) {
+      setScore(score + question.points)
+      setCorrectAnswers(correctAnswers + 1)
+    }
+
+    setShowResult(true)
+
+    setTimeout(() => {
+      if (isLastQuestion) {
+        const finalScore = isCorrect ? score + question.points : score
+        const badges = []
+
+        if (correctAnswers + (isCorrect ? 1 : 0) === quizQuestions.length) {
+          badges.push("Perfeccionista")
+        }
+        if (finalScore >= 120) {
+          badges.push("Experto en Comunicación")
+        }
+        if (correctAnswers + (isCorrect ? 1 : 0) >= 5) {
+          badges.push("Conocedor")
+        }
+
+        onComplete(finalScore, badges)
+      } else {
+        setCurrentQuestion(currentQuestion + 1)
+        setSelectedAnswer(null)
+        setShowResult(false)
+      }
+    }, 3000)
+  }
+
+  const getScorePercentage = () => {
+    const maxScore = quizQuestions.reduce((sum, q) => sum + q.points, 0)
+    return Math.round((score / maxScore) * 100)
+  }
+
+  if (showResult) {
+    const isCorrect = selectedAnswer === question.correctAnswer
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4 flex items-center justify-center">
+        <Card className="max-w-2xl w-full animate-bounce-in">
+          <CardContent className="p-8 text-center">
+            <div className="text-6xl mb-4">{isCorrect ? "✅" : "❌"}</div>
+            <h3 className="text-2xl font-bold mb-4">{isCorrect ? "¡Correcto!" : "Incorrecto"}</h3>
+
+            {isCorrect && (
+              <div className="bg-green-100 rounded-lg p-4 mb-4">
+                <p className="text-lg font-semibold text-green-700 mb-2">+{question.points} puntos</p>
+                <Badge className="bg-green-500">{question.category}</Badge>
+              </div>
+            )}
+
+            <div className="bg-muted/50 rounded-lg p-4 mb-4 text-left">
+              <p className="font-semibold mb-2">Explicación:</p>
+              <p className="text-muted-foreground">{question.explanation}</p>
+              {!isCorrect && (
+                <p className="text-sm text-primary mt-2">
+                  Respuesta correcta: {question.options[question.correctAnswer]}
+                </p>
+              )}
+            </div>
+
+            <div className="flex items-center justify-center gap-2">
+              <Star className="w-5 h-5 text-yellow-500" />
+              <span className="font-bold">
+                Puntuación: {score} ({getScorePercentage()}%)
+              </span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-cyan-50 p-4">
+      <div className="max-w-4xl mx-auto space-y-6">
+        {/* Header */}
+        <Card className="bg-gradient-to-r from-indigo-500 to-cyan-500 text-white border-0">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <Button variant="ghost" onClick={onExit} className="text-white hover:bg-white/20">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Salir
+              </Button>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Brain className="w-5 h-5" />
+                  <span className="font-bold">Quiz de Comunicación</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Star className="w-5 h-5 text-yellow-300" />
+                  <span className="font-bold text-lg">{score}</span>
+                </div>
+              </div>
+            </div>
+            <Progress value={((currentQuestion + 1) / quizQuestions.length) * 100} className="bg-white/20" />
+            <p className="text-sm text-white/80">
+              Pregunta {currentQuestion + 1} de {quizQuestions.length}
+            </p>
+          </CardHeader>
+        </Card>
+
+        {/* Question */}
+        <Card className="overflow-hidden">
+          <CardHeader className="bg-gradient-to-r from-indigo-500/10 to-cyan-500/10">
+            <div className="flex items-center gap-3 mb-2">
+              <Target className="w-6 h-6 text-primary" />
+              <Badge variant="outline">{question.category}</Badge>
+              <Badge variant="secondary">{question.points} pts</Badge>
+            </div>
+            <CardTitle className="text-xl text-balance leading-relaxed">{question.question}</CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="space-y-3 mb-8">
+              {question.options.map((option, index) => (
+                <Button
+                  key={index}
+                  onClick={() => handleAnswerSelect(index)}
+                  variant={selectedAnswer === index ? "default" : "outline"}
+                  className={`w-full p-4 h-auto text-left justify-start transition-all duration-200 ${
+                    selectedAnswer === index
+                      ? "bg-primary text-primary-foreground"
+                      : "hover:bg-primary/5 hover:border-primary/50"
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div
+                      className={`w-8 h-8 rounded-full border-2 flex items-center justify-center font-bold ${
+                        selectedAnswer === index
+                          ? "border-primary-foreground text-primary-foreground"
+                          : "border-primary text-primary"
+                      }`}
+                    >
+                      {String.fromCharCode(65 + index)}
+                    </div>
+                    <span className="text-pretty leading-relaxed">{option}</span>
+                  </div>
+                </Button>
+              ))}
+            </div>
+
+            <div className="flex justify-between items-center">
+              <div className="text-sm text-muted-foreground">
+                {correctAnswers} respuestas correctas de {currentQuestion}
+              </div>
+              <Button
+                onClick={handleNextQuestion}
+                disabled={selectedAnswer === null}
+                className="bg-primary hover:bg-primary/90"
+              >
+                {isLastQuestion ? "Finalizar Quiz" : "Siguiente Pregunta"}
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Progress Summary */}
+        <Card className="bg-muted/30">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between text-sm">
+              <span>Progreso del Quiz</span>
+              <span className="font-semibold">{Math.round(((currentQuestion + 1) / quizQuestions.length) * 100)}%</span>
+            </div>
+            <Progress value={((currentQuestion + 1) / quizQuestions.length) * 100} className="mt-2" />
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="components/RoleplayLevel.tsx">
+"use client"
+
+import { useState } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import { Star, Zap, Heart, MessageCircle, Trophy, ArrowLeft } from "lucide-react"
+
+interface Choice {
+  text: string
+  points: number
+  principle: string
+  nextScene: number
+  feedback: string
+}
+
+interface Scene {
+  id: number
+  title: string
+  description: string
+  capibaraExpression: string
+  situation: string
+  choices: Choice[]
+}
+
+interface RoleplayLevelProps {
+  levelId: number
+  onComplete: (score: number, badges: string[]) => void
+  onExit: () => void
+}
+
+const communicationScenes: Scene[] = [
+  {
+    id: 1,
+    title: "🌿 Primer Encuentro en la Oficina",
+    description:
+      "Es tu primer día en una nueva empresa. Te encuentras con Capi, tu nuevo compañero de equipo, en la cocina. Parece tímido y evita el contacto visual.",
+    capibaraExpression: "😟",
+    situation: "Situación: Necesitas establecer una buena primera impresión y crear rapport con tu nuevo colega.",
+    choices: [
+      {
+        text: "Me acerco con una sonrisa y digo: 'Hola, soy [tu nombre]. ¿Tú debes ser Capi? He escuchado cosas geniales sobre tu trabajo.'",
+        points: 20,
+        principle: "Reciprocidad + Simpatía",
+        nextScene: 2,
+        feedback:
+          "¡Excelente! Usaste el principio de reciprocidad al dar un cumplido primero, y simpatía al mostrar interés genuino.",
+      },
+      {
+        text: "Le digo directamente: 'Hola, soy el nuevo. ¿Puedes explicarme cómo funcionan las cosas aquí?'",
+        points: 10,
+        principle: "Comunicación directa",
+        nextScene: 3,
+        feedback: "Funcional, pero podrías haber sido más cálido para establecer mejor conexión.",
+      },
+      {
+        text: "Espero a que él hable primero mientras reviso mi teléfono.",
+        points: 2,
+        principle: "Pasividad",
+        nextScene: 4,
+        feedback: "Oportunidad perdida. La comunicación proactiva es clave para construir relaciones.",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "🤝 Construyendo Confianza",
+    description:
+      "Capi se ilumina con tu comentario y sonríe. Te cuenta que está trabajando en un proyecto desafiante y se siente un poco abrumado.",
+    capibaraExpression: "😊",
+    situation: "Situación: Tu colega se está abriendo contigo. Es momento de profundizar la conexión.",
+    choices: [
+      {
+        text: "'Entiendo perfectamente esa sensación. En mi trabajo anterior tuve un proyecto similar. ¿Te gustaría que conversemos sobre estrategias que me funcionaron?'",
+        points: 25,
+        principle: "Reciprocidad + Autoridad + Compromiso",
+        nextScene: 5,
+        feedback:
+          "¡Perfecto! Compartiste experiencia (autoridad), ofreciste ayuda (reciprocidad) y te comprometiste a apoyar.",
+      },
+      {
+        text: "'No te preocupes, seguro lo resolverás. Los proyectos siempre se ven más difíciles al principio.'",
+        points: 12,
+        principle: "Optimismo básico",
+        nextScene: 6,
+        feedback: "Positivo, pero podrías haber ofrecido apoyo más concreto para fortalecer la relación.",
+      },
+      {
+        text: "'Ah, qué mal. Bueno, yo también tengo mucho que aprender aquí.'",
+        points: 5,
+        principle: "Empatía superficial",
+        nextScene: 7,
+        feedback: "Muy básico. Perdiste la oportunidad de establecer una conexión más profunda.",
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: "📋 Ajustando el Enfoque",
+    description:
+      "Capi responde de manera educada pero formal. Notas que mantiene cierta distancia. Decides cambiar tu estrategia.",
+    capibaraExpression: "😐",
+    situation: "Situación: Tu enfoque inicial fue muy directo. Necesitas crear más calidez en la interacción.",
+    choices: [
+      {
+        text: "'Disculpa si sonó muy formal. La verdad es que estoy un poco nervioso por el primer día. ¿Cómo te fue a ti cuando empezaste aquí?'",
+        points: 18,
+        principle: "Vulnerabilidad + Reciprocidad",
+        nextScene: 5,
+        feedback: "¡Genial! Mostraste vulnerabilidad auténtica y usaste una pregunta para crear reciprocidad.",
+      },
+      {
+        text: "'Perfecto, entonces ¿me puedes mostrar dónde está mi escritorio?'",
+        points: 8,
+        principle: "Funcionalidad",
+        nextScene: 6,
+        feedback: "Cumple el objetivo básico, pero no construye relación personal.",
+      },
+      {
+        text: "'Ok, supongo que cada uno tiene su estilo de trabajo.'",
+        points: 3,
+        principle: "Desconexión",
+        nextScene: 7,
+        feedback: "Te estás alejando en lugar de acercarte. La persistencia empática es importante.",
+      },
+    ],
+  },
+  {
+    id: 4,
+    title: "🔄 Segunda Oportunidad",
+    description:
+      "Capi termina su café y se prepara para irse. Te das cuenta de que necesitas actuar ahora o perderás la oportunidad de conectar.",
+    capibaraExpression: "😕",
+    situation: "Situación: Última oportunidad para establecer una conexión positiva antes de que se vaya.",
+    choices: [
+      {
+        text: "'¡Espera! Perdón por no presentarme antes. Soy [tu nombre] y me encantaría conocer más sobre el equipo. ¿Tienes un minuto?'",
+        points: 15,
+        principle: "Recuperación + Interés genuino",
+        nextScene: 5,
+        feedback: "Buena recuperación. Reconociste el error y mostraste interés genuino.",
+      },
+      {
+        text: "'Oye, ¿sabes dónde puedo encontrar a mi supervisor?'",
+        points: 6,
+        principle: "Funcional tardío",
+        nextScene: 6,
+        feedback: "Muy básico para una primera interacción. Podrías haber sido más personal.",
+      },
+      {
+        text: "Dejo que se vaya sin decir nada.",
+        points: 1,
+        principle: "Inacción",
+        nextScene: 7,
+        feedback: "Oportunidad completamente perdida. La comunicación requiere acción proactiva.",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "🌟 Conexión Exitosa",
+    description:
+      "¡Excelente! Has establecido una conexión genuina con Capi. Él se ofrece a presentarte al resto del equipo y a ayudarte durante tu primera semana.",
+    capibaraExpression: "🤗",
+    situation: "Resultado: Tu enfoque empático y auténtico ha creado el inicio de una gran relación profesional.",
+    choices: [
+      {
+        text: "Continuar al siguiente desafío",
+        points: 30,
+        principle: "Éxito en construcción de rapport",
+        nextScene: 8,
+        feedback: "¡Felicitaciones! Dominaste los principios de comunicación efectiva en el primer encuentro.",
+      },
+    ],
+  },
+  {
+    id: 6,
+    title: "👍 Progreso Moderado",
+    description:
+      "Capi te ayuda con lo básico y es cordial, pero la interacción se mantiene en un nivel superficial. Hay potencial para mejorar.",
+    capibaraExpression: "🙂",
+    situation: "Resultado: Funcional pero sin conexión profunda. Aprendiste que la calidez personal es importante.",
+    choices: [
+      {
+        text: "Reflexionar y continuar",
+        points: 15,
+        principle: "Aprendizaje continuo",
+        nextScene: 8,
+        feedback: "Bien. Reconoces que hay espacio para mejorar en crear conexiones más profundas.",
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: "⚠️ Oportunidad de Aprendizaje",
+    description:
+      "La interacción no logró crear una conexión significativa. Capi se mantiene distante y formal contigo.",
+    capibaraExpression: "😔",
+    situation:
+      "Resultado: Reflexiona sobre cómo la comunicación proactiva y empática es esencial para construir relaciones.",
+    choices: [
+      {
+        text: "Aprender de la experiencia",
+        points: 8,
+        principle: "Reflexión y crecimiento",
+        nextScene: 8,
+        feedback: "Importante lección: la comunicación efectiva requiere iniciativa, empatía y autenticidad.",
+      },
+    ],
+  },
+  {
+    id: 8,
+    title: "🎯 Reflexión y Aprendizaje",
+    description:
+      "Has completado el primer nivel de comunicación. Cada decisión aplicó diferentes principios de comunicación efectiva en el entorno profesional.",
+    capibaraExpression: "🎓",
+    situation: "¡Nivel completado! Revisa tus resultados y los principios que aplicaste.",
+    choices: [],
+  },
+]
+
+const badges = [
+  { name: "Empático", threshold: 50, icon: Heart, description: "Mostraste gran empatía y comprensión" },
+  { name: "Comunicador", threshold: 70, icon: MessageCircle, description: "Excelente habilidad de comunicación" },
+  { name: "Constructor de Relaciones", threshold: 90, icon: Star, description: "Maestro en crear conexiones" },
+  { name: "Líder Natural", threshold: 110, icon: Trophy, description: "Liderazgo excepcional" },
+]
+
+export default function RoleplayLevel({ levelId, onComplete, onExit }: RoleplayLevelProps) {
+  const [currentScene, setCurrentScene] = useState(1)
+  const [score, setScore] = useState(0)
+  const [earnedBadges, setEarnedBadges] = useState<string[]>([])
+  const [showFeedback, setShowFeedback] = useState(false)
+  const [lastChoice, setLastChoice] = useState<Choice | null>(null)
+  const [choiceHistory, setChoiceHistory] = useState<number[]>([])
+
+  const scene = communicationScenes.find((s) => s.id === currentScene)
+
+  const makeChoice = (choiceIndex: number) => {
+    if (!scene) return
+
+    const choice = scene.choices[choiceIndex]
+    const newScore = score + choice.points
+
+    setLastChoice(choice)
+    setShowFeedback(true)
+    setScore(newScore)
+    setChoiceHistory([...choiceHistory, choiceIndex])
+
+    // Check for new badges
+    const newBadges = badges
+      .filter((badge) => newScore >= badge.threshold && !earnedBadges.includes(badge.name))
+      .map((badge) => badge.name)
+
+    if (newBadges.length > 0) {
+      setEarnedBadges([...earnedBadges, ...newBadges])
+    }
+
+    setTimeout(() => {
+      setShowFeedback(false)
+      if (choice.nextScene === 8) {
+        onComplete(newScore, [...earnedBadges, ...newBadges])
+      } else {
+        setCurrentScene(choice.nextScene)
+      }
+    }, 3000)
+  }
+
+  const getScoreLevel = () => {
+    if (score >= 100) return { level: "Maestro Comunicador", color: "text-yellow-500", bg: "bg-yellow-100" }
+    if (score >= 80) return { level: "Comunicador Experto", color: "text-green-500", bg: "bg-green-100" }
+    if (score >= 60) return { level: "Buen Comunicador", color: "text-blue-500", bg: "bg-blue-100" }
+    if (score >= 40) return { level: "Aprendiz", color: "text-purple-500", bg: "bg-purple-100" }
+    return { level: "Principiante", color: "text-gray-500", bg: "bg-gray-100" }
+  }
+
+  if (!scene) return null
+
+  if (showFeedback && lastChoice) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 p-4 flex items-center justify-center">
+        <Card className="max-w-2xl w-full animate-bounce-in">
+          <CardContent className="p-8 text-center">
+            <div className="text-6xl mb-4">✨</div>
+            <h3 className="text-2xl font-bold mb-4">¡Excelente elección!</h3>
+            <div className="bg-primary/10 rounded-lg p-4 mb-4">
+              <p className="text-lg font-semibold text-primary mb-2">+{lastChoice.points} puntos</p>
+              <Badge className="mb-3">{lastChoice.principle}</Badge>
+              <p className="text-muted-foreground">{lastChoice.feedback}</p>
+            </div>
+            <div className="flex items-center justify-center gap-2">
+              <Star className="w-5 h-5 text-yellow-500" />
+              <span className="font-bold">Puntuación total: {score}</span>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
+      <div className="max-w-4xl mx-auto space-y-6">
+        {/* Header */}
+        <Card className="bg-gradient-to-r from-primary to-secondary text-white border-0">
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <Button variant="ghost" onClick={onExit} className="text-white hover:bg-white/20">
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Salir
+              </Button>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <Star className="w-5 h-5 text-yellow-300" />
+                  <span className="font-bold text-lg">{score}</span>
+                </div>
+                <div className="flex gap-1">
+                  {earnedBadges.map((badge, index) => {
+                    const badgeInfo = badges.find((b) => b.name === badge)
+                    if (!badgeInfo) return null
+                    const IconComponent = badgeInfo.icon
+                    return (
+                      <Badge key={index} variant="secondary" className="animate-pulse-glow">
+                        <IconComponent className="w-3 h-3 mr-1" />
+                        {badge}
+                      </Badge>
+                    )
+                  })}
+                </div>
+              </div>
+            </div>
+            <Progress value={(currentScene / 8) * 100} className="bg-white/20" />
+            <p className="text-sm text-white/80">Escena {currentScene} de 8</p>
+          </CardHeader>
+        </Card>
+
+        {/* Scene Content */}
+        <Card className="overflow-hidden">
+          <CardHeader className="bg-gradient-to-r from-primary/10 to-secondary/10">
+            <CardTitle className="text-xl text-balance">{scene.title}</CardTitle>
+          </CardHeader>
+          <CardContent className="p-6">
+            <div className="text-center mb-6">
+              <div className="text-8xl mb-4 animate-bounce-in">{scene.capibaraExpression}</div>
+              <p className="text-lg text-muted-foreground text-pretty leading-relaxed mb-4">{scene.description}</p>
+              <div className="bg-muted/50 rounded-lg p-4 mb-6">
+                <p className="text-sm font-semibold text-primary">{scene.situation}</p>
+              </div>
+            </div>
+
+            {/* Choices */}
+            {scene.choices.length > 0 && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-center mb-4">¿Cómo respondes?</h3>
+                {scene.choices.map((choice, index) => (
+                  <Button
+                    key={index}
+                    onClick={() => makeChoice(index)}
+                    variant="outline"
+                    className="w-full p-6 h-auto text-left justify-start hover:bg-primary/5 hover:border-primary/50 transition-all duration-200"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="bg-primary/10 rounded-full p-3 mt-1 flex-shrink-0">
+                        <Zap className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-pretty leading-relaxed text-base">{choice.text}</p>
+                        <div className="flex items-center gap-2 mt-3">
+                          <Badge variant="secondary" className="text-xs">
+                            +{choice.points} pts
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {choice.principle}
+                          </Badge>
+                        </div>
+                      </div>
+                    </div>
+                  </Button>
+                ))}
+              </div>
+            )}
+
+            {/* Final Results */}
+            {currentScene === 8 && (
+              <div className="text-center space-y-6 animate-bounce-in">
+                <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg p-8">
+                  <Trophy className="w-20 h-20 text-yellow-500 mx-auto mb-4" />
+                  <h3 className="text-3xl font-bold mb-4">¡Nivel Completado!</h3>
+                  <div className={`inline-block px-4 py-2 rounded-lg ${getScoreLevel().bg} mb-4`}>
+                    <p className={`text-xl font-semibold ${getScoreLevel().color}`}>{getScoreLevel().level}</p>
+                  </div>
+                  <p className="text-muted-foreground text-lg">Puntuación final: {score} puntos</p>
+
+                  {earnedBadges.length > 0 && (
+                    <div className="mt-6">
+                      <p className="font-semibold mb-3 text-lg">Insignias obtenidas:</p>
+                      <div className="flex flex-wrap gap-3 justify-center">
+                        {earnedBadges.map((badge, index) => {
+                          const badgeInfo = badges.find((b) => b.name === badge)
+                          if (!badgeInfo) return null
+                          const IconComponent = badgeInfo.icon
+                          return (
+                            <div
+                              key={index}
+                              className="bg-primary text-primary-foreground rounded-lg p-3 animate-pulse-glow"
+                            >
+                              <IconComponent className="w-6 h-6 mx-auto mb-1" />
+                              <p className="text-sm font-semibold">{badge}</p>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <Button
+                  onClick={() => onComplete(score, earnedBadges)}
+                  className="bg-primary hover:bg-primary/90 text-lg px-8 py-3"
+                >
+                  Continuar
+                </Button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* Learning Tips */}
+        <Card className="bg-muted/30 border border-border/50">
+          <CardHeader>
+            <CardTitle className="text-lg flex items-center gap-2">🧠 Principios de Comunicación Efectiva</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+              <div className="bg-background rounded-lg p-4">
+                <div className="font-semibold text-primary mb-1">Reciprocidad</div>
+                <div className="text-muted-foreground">Da valor antes de pedirlo</div>
+              </div>
+              <div className="bg-background rounded-lg p-4">
+                <div className="font-semibold text-primary mb-1">Simpatía</div>
+                <div className="text-muted-foreground">Conecta emocionalmente</div>
+              </div>
+              <div className="bg-background rounded-lg p-4">
+                <div className="font-semibold text-primary mb-1">Autoridad</div>
+                <div className="text-muted-foreground">Comparte experiencia relevante</div>
+              </div>
+              <div className="bg-background rounded-lg p-4">
+                <div className="font-semibold text-primary mb-1">Compromiso</div>
+                <div className="text-muted-foreground">Mantén coherencia en acciones</div>
+              </div>
+              <div className="bg-background rounded-lg p-4">
+                <div className="font-semibold text-primary mb-1">Vulnerabilidad</div>
+                <div className="text-muted-foreground">Sé auténtico y humano</div>
+              </div>
+              <div className="bg-background rounded-lg p-4">
+                <div className="font-semibold text-primary mb-1">Escucha Activa</div>
+                <div className="text-muted-foreground">Presta atención genuina</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
+</file>
+
+<file path="components/ui/badge.tsx">
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const badgeVariants = cva(
+  "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
+        secondary:
+          "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
+        destructive:
+          "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+        outline:
+          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
+function Badge({
+  className,
+  variant,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? Slot : "span"
+
+  return (
+    <Comp
+      data-slot="badge"
+      className={cn(badgeVariants({ variant }), className)}
+      {...props}
+    />
+  )
+}
+
+export { Badge, badgeVariants }
+</file>
+
+<file path="components/ui/button.tsx">
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
+        outline:
+          "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
+        ghost:
+          "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2 has-[>svg]:px-3",
+        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
+        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
+        icon: "size-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+function Button({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean
+  }) {
+  const Comp = asChild ? Slot : "button"
+
+  return (
+    <Comp
+      data-slot="button"
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  )
+}
+
+export { Button, buttonVariants }
+</file>
+
+<file path="components/ui/card.tsx">
+import * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+function Card({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-header"
+      className={cn(
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-title"
+      className={cn("leading-none font-semibold", className)}
+      {...props}
+    />
+  )
+}
+
+function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-description"
+      className={cn("text-muted-foreground text-sm", className)}
+      {...props}
+    />
+  )
+}
+
+function CardAction({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-action"
+      className={cn(
+        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-content"
+      className={cn("px-6", className)}
+      {...props}
+    />
+  )
+}
+
+function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      {...props}
+    />
+  )
+}
+
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+}
+</file>
+
+<file path="components/ui/progress.tsx">
+"use client"
+
+import * as React from "react"
+import * as ProgressPrimitive from "@radix-ui/react-progress"
+
+import { cn } from "@/lib/utils"
+
+function Progress({
+  className,
+  value,
+  ...props
+}: React.ComponentProps<typeof ProgressPrimitive.Root>) {
+  return (
+    <ProgressPrimitive.Root
+      data-slot="progress"
+      className={cn(
+        "bg-primary/20 relative h-2 w-full overflow-hidden rounded-full",
+        className
+      )}
+      {...props}
+    >
+      <ProgressPrimitive.Indicator
+        data-slot="progress-indicator"
+        className="bg-primary h-full w-full flex-1 transition-all"
+        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+      />
+    </ProgressPrimitive.Root>
+  )
+}
+
+export { Progress }
+</file>
+
+<file path="eslint.config.mjs">
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+];
+
+export default eslintConfig;
+</file>
+
+<file path="lib/utils.ts">
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+</file>
+
+<file path="next.config.ts">
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  /* config options here */
+};
+
+export default nextConfig;
+</file>
+
+<file path="package.json">
+{
+  "name": "nu9ve-v5",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@vercel/analytics": "^1.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "geist": "^1.4.2",
+    "lucide-react": "^0.542.0",
+    "next": "15.2.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.4",
+    "tailwindcss": "^4.1.12",
+    "tw-animate-css": "^1.3.8",
+    "typescript": "^5"
+  }
+}
+</file>
+
+<file path="postcss.config.mjs">
+const config = {
+  plugins: ["@tailwindcss/postcss"],
+};
+
+export default config;
+</file>
+
+<file path="public/file.svg">
+<svg fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 13.5V5.41a1 1 0 0 0-.3-.7L9.8.29A1 1 0 0 0 9.08 0H1.5v13.5A2.5 2.5 0 0 0 4 16h8a2.5 2.5 0 0 0 2.5-2.5m-1.5 0v-7H8v-5H3v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1M9.5 5V2.12L12.38 5zM5.13 5h-.62v1.25h2.12V5zm-.62 3h7.12v1.25H4.5zm.62 3h-.62v1.25h7.12V11z" clip-rule="evenodd" fill="#666" fill-rule="evenodd"/></svg>
+</file>
+
+<file path="public/globe.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.27 14.1a6.5 6.5 0 0 0 3.67-3.45q-1.24.21-2.7.34-.31 1.83-.97 3.1M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.48-1.52a7 7 0 0 1-.96 0H7.5a4 4 0 0 1-.84-1.32q-.38-.89-.63-2.08a40 40 0 0 0 3.92 0q-.25 1.2-.63 2.08a4 4 0 0 1-.84 1.31zm2.94-4.76q1.66-.15 2.95-.43a7 7 0 0 0 0-2.58q-1.3-.27-2.95-.43a18 18 0 0 1 0 3.44m-1.27-3.54a17 17 0 0 1 0 3.64 39 39 0 0 1-4.3 0 17 17 0 0 1 0-3.64 39 39 0 0 1 4.3 0m1.1-1.17q1.45.13 2.69.34a6.5 6.5 0 0 0-3.67-3.44q.65 1.26.98 3.1M8.48 1.5l.01.02q.41.37.84 1.31.38.89.63 2.08a40 40 0 0 0-3.92 0q.25-1.2.63-2.08a4 4 0 0 1 .85-1.32 7 7 0 0 1 .96 0m-2.75.4a6.5 6.5 0 0 0-3.67 3.44 29 29 0 0 1 2.7-.34q.31-1.83.97-3.1M4.58 6.28q-1.66.16-2.95.43a7 7 0 0 0 0 2.58q1.3.27 2.95.43a18 18 0 0 1 0-3.44m.17 4.71q-1.45-.12-2.69-.34a6.5 6.5 0 0 0 3.67 3.44q-.65-1.27-.98-3.1" fill="#666"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h16v16H0z"/></clipPath></defs></svg>
+</file>
+
+<file path="public/next.svg">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 394 80"><path fill="#000" d="M262 0h68.5v12.7h-27.2v66.6h-13.6V12.7H262V0ZM149 0v12.7H94v20.4h44.3v12.6H94v21h55v12.6H80.5V0h68.7zm34.3 0h-17.8l63.8 79.4h17.9l-32-39.7 32-39.6h-17.9l-23 28.6-23-28.6zm18.3 56.7-9-11-27.1 33.7h17.8l18.3-22.7z"/><path fill="#000" d="M81 79.3 17 0H0v79.3h13.6V17l50.2 62.3H81Zm252.6-.4c-1 0-1.8-.4-2.5-1s-1.1-1.6-1.1-2.6.3-1.8 1-2.5 1.6-1 2.6-1 1.8.3 2.5 1a3.4 3.4 0 0 1 .6 4.3 3.7 3.7 0 0 1-3 1.8zm23.2-33.5h6v23.3c0 2.1-.4 4-1.3 5.5a9.1 9.1 0 0 1-3.8 3.5c-1.6.8-3.5 1.3-5.7 1.3-2 0-3.7-.4-5.3-1s-2.8-1.8-3.7-3.2c-.9-1.3-1.4-3-1.4-5h6c.1.8.3 1.6.7 2.2s1 1.2 1.6 1.5c.7.4 1.5.5 2.4.5 1 0 1.8-.2 2.4-.6a4 4 0 0 0 1.6-1.8c.3-.8.5-1.8.5-3V45.5zm30.9 9.1a4.4 4.4 0 0 0-2-3.3 7.5 7.5 0 0 0-4.3-1.1c-1.3 0-2.4.2-3.3.5-.9.4-1.6 1-2 1.6a3.5 3.5 0 0 0-.3 4c.3.5.7.9 1.3 1.2l1.8 1 2 .5 3.2.8c1.3.3 2.5.7 3.7 1.2a13 13 0 0 1 3.2 1.8 8.1 8.1 0 0 1 3 6.5c0 2-.5 3.7-1.5 5.1a10 10 0 0 1-4.4 3.5c-1.8.8-4.1 1.2-6.8 1.2-2.6 0-4.9-.4-6.8-1.2-2-.8-3.4-2-4.5-3.5a10 10 0 0 1-1.7-5.6h6a5 5 0 0 0 3.5 4.6c1 .4 2.2.6 3.4.6 1.3 0 2.5-.2 3.5-.6 1-.4 1.8-1 2.4-1.7a4 4 0 0 0 .8-2.4c0-.9-.2-1.6-.7-2.2a11 11 0 0 0-2.1-1.4l-3.2-1-3.8-1c-2.8-.7-5-1.7-6.6-3.2a7.2 7.2 0 0 1-2.4-5.7 8 8 0 0 1 1.7-5 10 10 0 0 1 4.3-3.5c2-.8 4-1.2 6.4-1.2 2.3 0 4.4.4 6.2 1.2 1.8.8 3.2 2 4.3 3.4 1 1.4 1.5 3 1.5 5h-5.8z"/></svg>
+</file>
+
+<file path="public/vercel.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+</file>
+
+<file path="public/window.svg">
+<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2.5h13v10a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1zM0 1h16v11.5a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 0 12.5zm3.75 4.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5M7 4.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m1.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5" fill="#666"/></svg>
+</file>
+
+<file path="README.md">
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+</file>
+
+<file path="tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+</file>
+
+</files>
