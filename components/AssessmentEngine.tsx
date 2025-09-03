@@ -61,12 +61,13 @@ export default function AssessmentEngine({ level, userData, onComplete, onBack, 
   const [attemptedItems, setAttemptedItems] = useState<Set<string>>(new Set())
   const [shuffledItems, setShuffledItems] = useState<AssessmentItem[]>([])
 
-  const petData = {
+  const petDataMap: Record<"baby-capybara" | "adult-capybara" | "golden-capybara" | "ninja-capybara", { icon: string; name: string }> = {
     "baby-capybara": { icon: "🐹", name: "Capi Bebé" },
     "adult-capybara": { icon: "🦫", name: "Capi Adulto" },
     "golden-capybara": { icon: "✨🦫", name: "Capi Dorado" },
     "ninja-capybara": { icon: "🥷🦫", name: "Capi Ninja" },
-  }[userData.currentPet] || { icon: "🐹", name: "Capi Bebé" }
+  }
+  const petData = petDataMap[userData.currentPet as keyof typeof petDataMap] || { icon: "🐹", name: "Capi Bebé" }
 
   // Initialize shuffled items for quiz levels
   useEffect(() => {

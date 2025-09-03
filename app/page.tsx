@@ -845,7 +845,7 @@ const DeckCarousel = ({
                 onClick={isActive ? () => onCourseSelect(course.id) : undefined}
                 tabIndex={isActive ? 0 : -1}
                 role="button"
-                aria-selected={isActive}
+                data-active={isActive}
                 onKeyDown={(e) => {
                   if (isActive && (e.key === "Enter" || e.key === " ")) {
                     e.preventDefault()
@@ -930,15 +930,14 @@ export default function Nu9veAcademy() {
   const [currentView, setCurrentView] = useState<"welcome" | "dashboard" | "course" | "level" | "shop" | "profile">(
     "welcome",
   )
-  const [selectedLevel, setSelectedLevel] = useState<number | null>(null)
   const [showDailyChest, setShowDailyChest] = useState(true)
   const [chestAnimation, setChestAnimation] = useState(false)
   const [lifeTimer, setLifeTimer] = useState(0)
   const [currentLevel, setCurrentLevel] = useState<number | null>(null)
 
-  const [selectedCourse, setSelectedCourse] = useState<string>("communication-v1")
+  // const [selectedCourse, setSelectedCourse] = useState<string>("communication-v1")
 
-  useEffect(() => {
+  useEffect(() => {   
     const interval = setInterval(() => {
       setUserData((prev) => {
         if (prev.lives < prev.maxLives) {
@@ -1002,22 +1001,22 @@ export default function Nu9veAcademy() {
     setCurrentView("level")
   }
 
-  const buyPet = (petId: string, price: number) => {
-    if (userData.coins >= price) {
-      setUserData((prev) => ({
-        ...prev,
-        coins: prev.coins - price,
-        unlockedPets: [...prev.unlockedPets, petId],
-      }))
-    }
-  }
+  // const buyPet = (petId: string, price: number) => {
+  //   if (userData.coins >= price) {
+  //     setUserData((prev) => ({
+  //       ...prev,
+  //       coins: prev.coins - price,
+  //       unlockedPets: [...prev.unlockedPets, petId],
+  //     }))
+  //   }
+  // }
 
-  const selectPet = (petId: string) => {
-    setUserData((prev) => ({
-      ...prev,
-      currentPet: petId,
-    }))
-  }
+  // const selectPet = (petId: string) => {
+  //   setUserData((prev) => ({
+  //     ...prev,
+  //     currentPet: petId,
+  //   }))
+  // }
 
   const loseLife = () => {
     setUserData((prev) => ({
@@ -1217,7 +1216,7 @@ export default function Nu9veAcademy() {
               }).length,
             }))}
             onCourseSelect={(courseId) => {
-              setSelectedCourse(courseId)
+              // setSelectedCourse(courseId)
               setCurrentView("course")
             }}
           />
